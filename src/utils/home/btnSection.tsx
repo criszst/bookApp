@@ -1,5 +1,6 @@
-import { View, TouchableOpacity, Text, Image } from "react-native";
-import { SIZES, FONTS, COLORS, icons } from "../../constants";
+import { View, TouchableOpacity } from "react-native";
+import { SIZES, COLORS } from "../../constants";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 const LineDivider = () => {
     return (
@@ -11,23 +12,16 @@ const LineDivider = () => {
 
 export function renderButtonSection() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', padding: SIZES.padding }}>
-            <View style={{ flexDirection: 'row', height: 70, backgroundColor: COLORS.secondary, borderRadius: SIZES.radius }}>
+        <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
+            <View style={{ flexDirection: 'row', height: 50, backgroundColor: COLORS.secondary, borderRadius: SIZES.radius }}>
                 {/* RESGATE */}
                 <TouchableOpacity
                     style={{ flex: 1 }}
                     onPress={() => console.log("Resgate")}
                 >
                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                        <Image
-                            source={icons.claim_icon}
-                            resizeMode="contain"
-                            style={{
-                                width: 30,
-                                height: 30
-                            }}
-                        />
-                        <Text style={{ marginLeft: SIZES.base, ...FONTS.body3, color: COLORS.white }}>Resgate</Text>
+
+                        <AntDesign name="gift" size={24} color="orange" />
                     </View>
                 </TouchableOpacity>
 
@@ -47,25 +41,17 @@ export function renderButtonSection() {
                             justifyContent: 'center'
                         }}
                     >
-                        <Image
-                            source={icons.point_icon}
-                            resizeMode="contain"
-                            style={{
-                                width: 30,
-                                height: 30
-                            }}
-                        />
-                        <Text style={{ marginLeft: SIZES.base, ...FONTS.body3, color: COLORS.white }}>Pontos</Text>
+                        <AntDesign name="pluscircleo" size={20} color="orange" />
                     </View>
                 </TouchableOpacity>
 
                 {/* divisor */}
                 <LineDivider />
 
-                {/* CARRINHO */}
+                {/* BLIBLIOTECA */}
                 <TouchableOpacity
                     style={{ flex: 1 }}
-                    onPress={() => console.log("Meu Carrinho")}
+                    onPress={() => console.log("Biblioteca")}
                 >
                     <View
                         style={{
@@ -75,15 +61,7 @@ export function renderButtonSection() {
                             justifyContent: 'center'
                         }}
                     >
-                        <Image
-                            source={icons.card_icon}
-                            resizeMode="contain"
-                            style={{
-                                width: 30,
-                                height: 30
-                            }}
-                        />
-                        <Text style={{ marginLeft: SIZES.base, ...FONTS.body3, color: COLORS.white }}>Carrinho</Text>
+                        <AntDesign name="appstore-o" size={24} color="orange" />
                     </View>
                 </TouchableOpacity>
             </View>

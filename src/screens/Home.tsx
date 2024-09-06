@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
     SafeAreaView,
     View,
@@ -6,8 +6,11 @@ import {
     TouchableOpacity,
     Image,
     ScrollView,
-    FlatList
+    FlatList,
+    Animated
 } from 'react-native';
+
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 import { renderHead } from '../utils/home/headSection'
 import { renderButtonSection } from "../utils/home/btnSection";
@@ -17,6 +20,7 @@ import { COLORS, FONTS, SIZES, icons, images } from '../constants';
 
 import { myBooksData } from "../components/Home/booksData";
 import { categoriesData } from "../components/Home/categoriesData";
+
 
 
 
@@ -32,20 +36,45 @@ const Home = ({ navigation }) => {
     const [categories, setCategories] = React.useState(categoriesData);
     const [selectedCategory, setSelectedCategory] = React.useState(1);
 
+    const scrollY = useRef(new Animated.Value(0)).current;
+
+
+    const headerHeight = scrollY.interpolate({
+        inputRange: [0, 200],
+        outputRange: [160, 0],
+        extrapolate: 'clamp',
+    });
+
+    const buttonOpacity = scrollY.interpolate({
+        inputRange: [0, 100],
+        outputRange: [1, 0],
+        extrapolate: 'clamp',
+    });
+
 
     return (
             <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.black }}>
-            <View style={{ height: 200 }}>
-                    {renderHead(profile)}
-                    {renderButtonSection()}
-            </View>
 
-             <ScrollView style={{ marginTop: SIZES.radius }}>
+                <Animated.View style={{ height: headerHeight, backgroundColor: COLORS.primary, opacity: buttonOpacity }}>
+                    {renderHead(profile)}
+                    <Animated.View style={{ opacity: buttonOpacity }}>
+                        {renderButtonSection()}
+                    </Animated.View>
+                </Animated.View>
+    
+                <Animated.ScrollView
+                style={{ marginTop: SIZES.padding }}
+                scrollEventThrottle={16} 
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                    { useNativeDriver: false }
+                )}
+            >
                 <View>
                     {renderMyBookSection(myBooks, navigation)}
                 </View>
 
-                {/* CATEGORIAS  */}
+                {/* CATEGORIAS */}
                 <View style={{ marginTop: SIZES.padding }}>
                     <View>
                         {renderCategoryHeader()}
@@ -54,8 +83,7 @@ const Home = ({ navigation }) => {
                         {renderCategoryData()}
                     </View>
                 </View>
-            </ScrollView>
-
+            </Animated.ScrollView>
             </SafeAreaView>
     )
 
@@ -120,7 +148,7 @@ const Home = ({ navigation }) => {
                         <View style={{ flex: 1, marginLeft: SIZES.radius }}>
                             {/* Book name and author */}
                             <View>
-                                <Text style={{ paddingRight: SIZES.padding, ...FONTS.h2, color: COLORS.white }}>{item.bookName}</Text>
+                                <Text style={{ paddingRight: SIZES.padding, ...FONTS.h3, color: COLORS.white }}>{item.bookName}</Text>
                                 <Text style={{ ...FONTS.h3, color: COLORS.lightGray }}>{item.author}</Text>
                             </View>
 
@@ -178,15 +206,7 @@ const Home = ({ navigation }) => {
                         style={{ position: 'absolute', top: 5, right: 15 }}
                         onPress={() => console.log("Bookmark")}
                     >
-                        <Image
-                            source={icons.bookmark_icon}
-                            resizeMode="contain"
-                            style={{
-                                width: 25,
-                                height: 25,
-                                tintColor: COLORS.lightGray
-                            }}
-                        />
+                       <MaterialCommunityIcons name="heart-multiple-outline" size={24} color="white" />
                     </TouchableOpacity>
                 </View>
             )

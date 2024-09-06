@@ -30,5 +30,5 @@ export default {
     bookmark_icon,
     read_icon,
     back_arrow_icon,
-    more_icon
+    more_icon,
 }

@@ -82,7 +82,7 @@ const BookDetail = ({ route, navigation }) => {
                     </View>
 
                     <TouchableOpacity
-                        style={{ marginRigth: SIZES.base }}
+                        style={{ marginRight: SIZES.base }}
                         onPress={() => console.log("Click para Mais")}
                     >
                         <Image
