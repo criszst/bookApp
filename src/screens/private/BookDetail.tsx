@@ -8,7 +8,7 @@ import {
     ScrollView,
     Animated
 } from 'react-native';
-import { FONTS, COLORS, SIZES, icons } from "../constants";
+import { FONTS, COLORS, SIZES, icons } from "../../constants/";
 
 const LineDivider = () => {
     return (
@@ -146,7 +146,7 @@ const BookDetail = ({ route, navigation }) => {
                     {/* Language */}
                     <View style={{ flex: 1, alignItems: 'center' }}>
                         <Text style={{ ...FONTS.h3, color: COLORS.white }}>{book.language}</Text>
-                        <Text style={{ ...FONTS.body4, color: COLORS.white }}>Linguagem</Text>
+                        <Text style={{ ...FONTS.body4, color: COLORS.white }}>Idioma</Text>
                     </View>
                 </View>
             </View>

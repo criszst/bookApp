@@ -12,14 +12,14 @@ import {
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-import { renderHead } from '../utils/home/headSection'
-import { renderButtonSection } from "../utils/home/btnSection";
-import { renderMyBookSection } from "../utils/home/myBookSection";
+import { renderHead } from '../../../utils/home/headSection'
+import { renderButtonSection } from "../../../utils/home/btnSection";
+import { renderMyBookSection } from "../../../utils/home/myBookSection";
 
-import { COLORS, FONTS, SIZES, icons, images } from '../constants';
+import { COLORS, FONTS, SIZES, icons, images } from '../../../constants';
 
-import { myBooksData } from "../components/Home/booksData";
-import { categoriesData } from "../components/Home/categoriesData";
+import { myBooksData } from "../../../components/Home/booksData";
+import { categoriesData } from "../../../components/Home/categoriesData";
 
 
 
@@ -138,7 +138,7 @@ const Home = ({ navigation }) => {
                             book: item
                         })}
                     >
-                        {/* Book Cover */}
+                        {/* CAPA DO LIVRO */}
                         <Image
                             source={item.bookCover}
                             resizeMode="cover"
@@ -146,13 +146,13 @@ const Home = ({ navigation }) => {
                         />
 
                         <View style={{ flex: 1, marginLeft: SIZES.radius }}>
-                            {/* Book name and author */}
+                            {/* NOME DO LIVRO E DO AUTOR */}
                             <View>
                                 <Text style={{ paddingRight: SIZES.padding, ...FONTS.h3, color: COLORS.white }}>{item.bookName}</Text>
                                 <Text style={{ ...FONTS.h3, color: COLORS.lightGray }}>{item.author}</Text>
                             </View>
 
-                            {/* Book Info */}
+                            {/* INFO LIVRO */}
                             <View style={{ flexDirection: 'row', marginTop: SIZES.radius }}>
                                 <Image
                                     source={icons.page_filled_icon}
@@ -177,7 +177,7 @@ const Home = ({ navigation }) => {
                                 <Text style={{ ...FONTS.body4, color: COLORS.lightGray, paddingHorizontal: SIZES.radius }}>{item.readed}</Text>
                             </View>
 
-                            {/* Genre */}
+                            {/* GÊNERO */}
                             <View style={{ flexDirection: 'row', marginTop: SIZES.base }}>
                                 {
                                     item.genre.includes("Adventure") &&
@@ -201,7 +201,7 @@ const Home = ({ navigation }) => {
                         </View>
                     </TouchableOpacity>
 
-                    {/* Bookmark Button */}
+                    {/* BOTAO DE FAVORITAR */}
                     <TouchableOpacity
                         style={{ position: 'absolute', top: 5, right: 15 }}
                         onPress={() => console.log("Bookmark")}

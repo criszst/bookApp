@@ -19,15 +19,9 @@ export const categoriesData = [
         id: 3,
         categoryName: "À Chegar",
         books: [
-            bookTheTinyDragon
-        ]
-    },
-
-    {
-        id: 4,
-        categoryName: "À Chegar",
-        books: [
+            bookTheTinyDragon,
             assimQueAcaba
         ]
     },
+
 ]

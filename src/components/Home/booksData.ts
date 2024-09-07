@@ -60,12 +60,12 @@ export var assimQueAcaba = {
     pageNo: 341,
     author: "Colleen Hoover",
     genre: [
-        "Romance", "Terror", "Drama"
+        "Romance", "Drama"
     ],
     readed: "100k",
     description: "Lily Bloom decide começar uma nova vida em Boston e tentar abrir o seu próprio negócio. Como consequência de sua mudança de vida, Lily acredita que encontrou o amor verdadeiro com Ryle, um charmoso neurocirurgião.",
     backgroundColor: "rgba(240,240,232,0.9)",
-    navTintColor: "#000"
+    navTintColor: "#FFF"
 }
 
 
