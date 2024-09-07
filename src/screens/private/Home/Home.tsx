@@ -51,6 +51,10 @@ const Home = ({ navigation }) => {
         extrapolate: 'clamp',
     });
 
+    const handleBookPress = (item) => {
+        navigation.navigate("BookDetail", { book: item });
+    };
+
 
     return (
             <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.black }}>
@@ -134,9 +138,7 @@ const Home = ({ navigation }) => {
                 <View style={{ marginVertical: SIZES.base }}>
                     <TouchableOpacity
                         style={{ flex: 1, flexDirection: 'row' }}
-                        onPress={() => navigation.navigate("BookDetail", {
-                            book: item
-                        })}
+                        onPress={() => handleBookPress(item)}
                     >
                         {/* CAPA DO LIVRO */}
                         <Image

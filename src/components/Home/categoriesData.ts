@@ -1,4 +1,4 @@
-import { assimQueAcaba, bookOtherWordsForHome, bookTheMetropolis, bookTheTinyDragon } from "./booksData"
+import { assimQueAcaba, bookOtherWordsForHome, bookTheMetropolis, bookTheTinyDragon, end, endd, us } from "./booksData"
 
 export const categoriesData = [
     {
@@ -20,7 +20,10 @@ export const categoriesData = [
         categoryName: "À Chegar",
         books: [
             bookTheTinyDragon,
-            assimQueAcaba
+            assimQueAcaba,
+            endd,
+            end,
+            us
         ]
     },
 
