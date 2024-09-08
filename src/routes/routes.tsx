@@ -5,6 +5,8 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 
 import { Home, BookDetail, Login } from "../screens/";
 
+import Search from '../screens/private/Search/Search'
+
 import Tabs from "../navigation/tabs";
 
 const theme = {
@@ -37,6 +39,10 @@ export function Routes() {
 
                  <Stack.Screen name="Login" 
                 component={Login} 
+                options={{ headerShown: false }} />
+
+                <Stack.Screen name="Search" 
+                component={Search} 
                 options={{ headerShown: false }} />
 
 

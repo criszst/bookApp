@@ -1,20 +1,17 @@
 import React from "react";
+
 import {
     View,
-    Text,
-    TouchableOpacity,
-    Image,
     FlatList,
 } from 'react-native';
 
-import { COLORS, FONTS, SIZES, icons, } from '../../constants';
+import { COLORS } from '../../constants';
 
 import getBook from "../../components/getBook";
 
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
+const SearchBook = ({ data, input, setInput, navigation }) => {
 
-const SearchBook = ({ data, input, setInput }) => {
     return (
         <View style={{ backgroundColor: COLORS.black}}>
             <FlatList 
@@ -23,13 +20,13 @@ const SearchBook = ({ data, input, setInput }) => {
 
                     if(input == "") {
                         return (
-                            getBook(item)
+                            getBook(item, navigation)
                         )
                     }
 
                     if (item.bookName.toLowerCase().includes(input.toLowerCase())) {
                         return (
-                            getBook(item)
+                            getBook(item, navigation)
                         )
                     }
                 }}

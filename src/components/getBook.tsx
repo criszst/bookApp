@@ -13,11 +13,18 @@ import { COLORS, FONTS, SIZES, icons, } from '../constants';
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-const getBook = (item) => {
+const getBook = (item, navigation) => {
+
+    const handleBookPress = (item) => {
+        navigation.navigate("BookDetail", { book: item });
+    };
+
+
     return (
         <View style={{ marginVertical: SIZES.base, backgroundColor: COLORS.black }}>
             <TouchableOpacity
                 style={{ flex: 1, flexDirection: 'row' }}
+                onPress={() => handleBookPress(item)}
             >
                 {/* CAPA DO LIVRO */}
                 <Image
