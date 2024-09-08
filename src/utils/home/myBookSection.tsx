@@ -1,9 +1,27 @@
-import { View, TouchableOpacity, FlatList, Text, Image,  } from "react-native";
+import { View, TouchableOpacity, FlatList, Text, Image, Dimensions, useWindowDimensions, SafeAreaView  } from "react-native";
 import { SIZES, FONTS, COLORS, icons } from "../../constants";
 
+import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle } from 'react-native-reanimated';
+import Carousel from 'react-native-reanimated-carousel'
+import { myBooksData } from "../../components/booksData";
+import { ScrollView } from "react-native";
 
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
-export function renderMyBookSection(myBooks: ArrayLike<any> | null | undefined, navigation) {
+export function renderMyBookSection(myBooks: ArrayLike<any>, navigation) {
+    const scrollX = useSharedValue(0);
+    
+    const scrollHandler = useAnimatedScrollHandler({
+        onScroll: ({ contentOffset }) => {
+         scrollX.value = contentOffset.x;
+        },
+      });
+
+      const animatedStyle = useAnimatedStyle(() => {
+        return {
+          transform: [{ translateX: -scrollX.value }],
+        };
+      });
 
     const renderItem = ({ item, index }) => {
         return (
@@ -55,12 +73,14 @@ export function renderMyBookSection(myBooks: ArrayLike<any> | null | undefined, 
         )
     }
 
+
+
     return (
         <View style={{ flex: 1 }}>
             {/* HEADER */}
             <View style={{ paddingHorizontal: SIZES.padding, flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text style={{ ...FONTS.h2, color: COLORS.white }}>
-                    Meus Livros
+                    Biblioteca
                 </Text>
 
                 <TouchableOpacity
@@ -73,15 +93,15 @@ export function renderMyBookSection(myBooks: ArrayLike<any> | null | undefined, 
             </View>
 
             {/* lIVROS */}
-            <View style={{ flex: 1, marginTop: SIZES.padding }}>
+            <ScrollView  style={{ flex: 1, marginTop: SIZES.padding,  }}>
                 <FlatList
-                    data={myBooks}
-                    renderItem={renderItem}
-                    keyExtractor={item => `${item.id}`}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                />
-            </View>
+                data={myBooks}
+                renderItem={renderItem}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                ></FlatList>
+          
+            </ScrollView >
         </View>
     )
 }

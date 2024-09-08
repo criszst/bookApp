@@ -4,8 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { View, ActivityIndicator } from 'react-native';
 
 import { useFonts } from '@expo-google-fonts/roboto';
-
-
 import { Routes } from './src/routes/routes';
 
 

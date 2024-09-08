@@ -18,8 +18,8 @@ import { renderMyBookSection } from "../../../utils/home/myBookSection";
 
 import { COLORS, FONTS, SIZES, icons, images } from '../../../constants';
 
-import { myBooksData } from "../../../components/Home/booksData";
-import { categoriesData } from "../../../components/Home/categoriesData";
+import { myBooksData } from "../../../components/booksData";
+import { categoriesData } from "../../../components/categoriesData";
 
 
 

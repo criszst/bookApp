@@ -1,4 +1,4 @@
-import { images } from '../../constants';
+import { images } from '../constants';
 
 export var bookOtherWordsForHome = {
     id: 1,
