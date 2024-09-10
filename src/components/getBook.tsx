@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef } from 'react';
 
 import {
     View,
@@ -12,18 +12,9 @@ import { COLORS, FONTS, SIZES, icons, } from '../constants';
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-import Animated, { useAnimatedStyle, withSpring } from 'react-native-reanimated';
+import { Animated } from 'react-native';
 
 const getBook = (item, navigation) => {
-    const [scale, setScale] = useState(1);
-
-
-    const animatedStyle = useAnimatedStyle(() => {
-        return {
-            transform: [{ scale: withSpring(scale) }],
-        };
-    });
-
 
     const handleBookPress = (item) => {
         navigation.navigate("BookDetail", { book: item });
@@ -36,7 +27,8 @@ const getBook = (item, navigation) => {
         }}>
             <TouchableOpacity
                 style={{ flex: 1, flexDirection: 'row',
-
+                    borderColor: COLORS.lightGray, // Cor da borda
+                    borderWidth: 1, 
                  }}
                 onPress={() => handleBookPress(item)}
             >
@@ -44,7 +36,9 @@ const getBook = (item, navigation) => {
                 <Image
                     source={item.bookCover}
                     resizeMode="cover"
-                    style={{ width: 100, height: 150, borderRadius: 10, }}
+                    style={{ width: 100, height: 150, borderRadius: 10,
+
+                     }}
                 />
 
                 <View style={{ flex: 1, marginLeft: SIZES.radius }}>

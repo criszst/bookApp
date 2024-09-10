@@ -25,7 +25,7 @@ const Search = ({ navigation }) => {
 
             </View>
             <View >
-                <SearchBook data={myBooks} input={input} setInput={setInput} navigation={navigation}></SearchBook>
+                <SearchBook data={myBooks} input={input} setInput={setInput} navigation={navigation} style={styles.searchList}></SearchBook>
             </View>
         </View>
     )
@@ -46,6 +46,10 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.lightGray,
         borderRadius: 10,
         fontSize: 15,
+    },
+
+    searchList: {
+        height: 500,
     }
 })
 
