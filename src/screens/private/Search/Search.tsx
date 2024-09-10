@@ -24,7 +24,7 @@ const Search = ({ navigation }) => {
                 />
 
             </View>
-            <View>
+            <View >
                 <SearchBook data={myBooks} input={input} setInput={setInput} navigation={navigation}></SearchBook>
             </View>
         </View>
@@ -34,8 +34,6 @@ const Search = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: 'auto',
-        height: 'auto',
         backgroundColor: COLORS.black,
     },
 

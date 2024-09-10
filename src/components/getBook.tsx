@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
     View,
     Text,
     TouchableOpacity,
     Image,
-    FlatList,
 } from 'react-native';
 
 
@@ -13,7 +12,18 @@ import { COLORS, FONTS, SIZES, icons, } from '../constants';
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
+import Animated, { useAnimatedStyle, withSpring } from 'react-native-reanimated';
+
 const getBook = (item, navigation) => {
+    const [scale, setScale] = useState(1);
+
+
+    const animatedStyle = useAnimatedStyle(() => {
+        return {
+            transform: [{ scale: withSpring(scale) }],
+        };
+    });
+
 
     const handleBookPress = (item) => {
         navigation.navigate("BookDetail", { book: item });
@@ -21,16 +31,20 @@ const getBook = (item, navigation) => {
 
 
     return (
-        <View style={{ marginVertical: SIZES.base, backgroundColor: COLORS.black }}>
+        <View style={{ flex: 1, marginVertical: SIZES.base, backgroundColor: COLORS.black, marginRight: SIZES.base, marginLeft: 20,
+            
+        }}>
             <TouchableOpacity
-                style={{ flex: 1, flexDirection: 'row' }}
+                style={{ flex: 1, flexDirection: 'row',
+
+                 }}
                 onPress={() => handleBookPress(item)}
             >
                 {/* CAPA DO LIVRO */}
                 <Image
                     source={item.bookCover}
                     resizeMode="cover"
-                    style={{ width: 100, height: 150, borderRadius: 10 }}
+                    style={{ width: 100, height: 150, borderRadius: 10, }}
                 />
 
                 <View style={{ flex: 1, marginLeft: SIZES.radius }}>
@@ -70,19 +84,19 @@ const getBook = (item, navigation) => {
                         {
                             item.genre.includes("Adventure") &&
                             <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkGreen, height: 40, borderRadius: SIZES.radius }}>
-                                <Text style={{ ...FONTS.body3, color: COLORS.lightGreen }}>Adventure</Text>
+                                <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>Adventure</Text>
                             </View>
                         }
                         {
                             item.genre.includes("Romance") &&
                             <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkRed, height: 40, borderRadius: SIZES.radius }}>
-                                <Text style={{ ...FONTS.body3, color: COLORS.lightRed }}>Romance</Text>
+                                <Text style={{ ...FONTS.body5, color: COLORS.lightRed }}>Romance</Text>
                             </View>
                         }
                         {
                             item.genre.includes("Drama") &&
                             <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkBlue, height: 40, borderRadius: SIZES.radius }}>
-                                <Text style={{ ...FONTS.body3, color: COLORS.lightBlue }}>Drama</Text>
+                                <Text style={{ ...FONTS.body5, color: COLORS.lightBlue }}>Drama</Text>
                             </View>
                         }
                     </View>

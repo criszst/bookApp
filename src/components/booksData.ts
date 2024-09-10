@@ -119,6 +119,23 @@ export var us = {
     navTintColor: "#FFF"
 }
 
+export var s = {
+    id: 8,
+    bookName: "Assim Que Acaba",
+    bookCover: images.itsEndWithUs,
+    rating: 4.5,
+    language: "Pt-Br",
+    pageNo: 341,
+    author: "Colleen Hoover",
+    genre: [
+        "Romance", "Drama"
+    ],
+    readed: "100k",
+    description: "Lily Bloom decide começar uma nova vida em Boston e tentar abrir o seu próprio negócio. Como consequência de sua mudança de vida, Lily acredita que encontrou o amor verdadeiro com Ryle, um charmoso neurocirurgião.",
+    backgroundColor: "rgba(240,240,232,0.9)",
+    navTintColor: "#FFF"
+}
+
 
 export const myBooksData = [
     {
@@ -160,6 +177,13 @@ export const myBooksData = [
 
     {
         ...us,
+        completion: '50%',
+        lastRead: '0d 5min'
+    },
+
+    
+    {
+        ...s,
         completion: '50%',
         lastRead: '0d 5min'
     }

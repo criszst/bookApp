@@ -1,4 +1,4 @@
-import { assimQueAcaba, bookOtherWordsForHome, bookTheMetropolis, bookTheTinyDragon, end, endd, us } from "./booksData"
+import { assimQueAcaba, bookOtherWordsForHome, bookTheMetropolis, bookTheTinyDragon, end, endd, s, us } from "./booksData"
 
 export const categoriesData = [
     {
@@ -23,7 +23,8 @@ export const categoriesData = [
             assimQueAcaba,
             endd,
             end,
-            us
+            us,
+            s
         ]
     },
 
