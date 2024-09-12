@@ -5,6 +5,7 @@ import {
     Text,
     TouchableOpacity,
     Image,
+    ImageSourcePropType,
 } from 'react-native';
 
 
@@ -14,7 +15,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 import { Animated } from 'react-native';
 
-const getBook = (item, navigation) => {
+const getBook = (item: { bookCover: ImageSourcePropType | undefined; bookName: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; author: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; pageNo: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; readed: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; genre: string | string[]; }, navigation: { navigate: (arg0: string, arg1: { book: any; }) => void; }) => {
 
     const handleBookPress = (item) => {
         navigation.navigate("BookDetail", { book: item });

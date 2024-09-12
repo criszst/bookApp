@@ -11,17 +11,6 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 export function renderMyBookSection(myBooks: ArrayLike<any>, navigation) {
     const scrollX = useSharedValue(0);
     
-    const scrollHandler = useAnimatedScrollHandler({
-        onScroll: ({ contentOffset }) => {
-         scrollX.value = contentOffset.x;
-        },
-      });
-
-      const animatedStyle = useAnimatedStyle(() => {
-        return {
-          transform: [{ translateX: -scrollX.value }],
-        };
-      });
 
     const renderItem = ({ item, index }) => {
         return (

@@ -52,10 +52,6 @@ const Home = ({ navigation }) => {
         extrapolate: 'clamp',
     });
 
-    const handleBookPress = (item) => {
-        navigation.navigate("BookDetail", { book: item });
-    };
-
 
     return (
             <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.black }}>
