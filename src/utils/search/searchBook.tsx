@@ -20,12 +20,15 @@ const SearchBook = ({ data, input, setInput, navigation }) => {
 
                     if(input == "") {
                         return (
+                            
                             getBook(item, navigation)
+                            
                         )
                     }
 
                     if (item.bookName.toLowerCase().includes(input.toLowerCase())) {
                         return (
+
                             getBook(item, navigation)
                         )
                     }

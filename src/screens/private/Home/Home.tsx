@@ -133,6 +133,7 @@ const Home = ({ navigation }) => {
         const renderItem = ({ item }) => {
             return (
                getBook(item, navigation)
+               
             )
         }
 

@@ -15,6 +15,22 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 import { Animated } from 'react-native';
 
+import axios, { AxiosError } from "axios";
+import * as cheerio from "cheerio";
+
+
+const response = axios.get("https://www.googleapis.com/books/v1/volumes?q=assim+que+acaba&key=AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo");
+
+function bookGoogle () {
+    axios.get("https://www.googleapis.com/books/v1/volumes?q=assim+que+acaba&key=AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo")
+    .then(res => { 
+    let data = res.data
+    return res.data
+
+    })
+}
+
+
 const getBook = (item: { bookCover: ImageSourcePropType | undefined; bookName: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; author: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; pageNo: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; readed: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; genre: string | string[]; }, navigation: { navigate: (arg0: string, arg1: { book: any; }) => void; }) => {
 
     const handleBookPress = (item) => {
@@ -29,9 +45,8 @@ const getBook = (item: { bookCover: ImageSourcePropType | undefined; bookName: s
             <TouchableOpacity
                 style={{ flex: 1, flexDirection: 'row',
                     borderColor: COLORS.lightGray, // Cor da borda
-                    borderWidth: 1, 
                  }}
-                onPress={() => handleBookPress(item)}
+                onPress={() => console.log(bookGoogle())}
             >
                 {/* CAPA DO LIVRO */}
                 <Image
