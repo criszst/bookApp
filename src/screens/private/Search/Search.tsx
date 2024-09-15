@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View,  StyleSheet} from "react-native";
-import { SearchBar } from 'react-native-elements';
+import { Button, SearchBar } from 'react-native-elements';
 
 import SearchBook from '../../../utils/search/searchBook';
 import { COLORS } from "../../../constants";
@@ -19,13 +19,12 @@ const Search = ({ navigation }) => {
                     platform="android"
                     placeholder="Digite o nome do livro"
                     placeholderTextColor="#888"
-                    value={input}
                     onChangeText={(text) => setInput(text)}
                 />
 
             </View>
             <View >
-                <SearchBook data={myBooks} input={input} setInput={setInput} navigation={navigation} style={styles.searchList}></SearchBook>
+                <SearchBook input={input} con={input} style={styles.searchList}></SearchBook>
             </View>
         </View>
     )
