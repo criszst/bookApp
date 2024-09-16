@@ -47,7 +47,7 @@ useEffect(() => {
 
 
 const renderItem = ({ item }): React.JSX.Element => (
-  <View style={{ flex: 1, marginVertical: SIZES.base, backgroundColor: COLORS.primary, marginRight: SIZES.base, marginLeft: 20,
+  <View style={{ flex: 1, marginVertical: SIZES.base, backgroundColor: COLORS.black, marginRight: SIZES.base, marginLeft: 20,
             
   }}>
       <TouchableOpacity
@@ -120,8 +120,8 @@ const renderItem = ({ item }): React.JSX.Element => (
 );
 
 return (
-  <SafeAreaView>
-  <View style={{ backgroundColor: COLORS.secondary, paddingBottom: 150}}>
+  <SafeAreaView style={{ backgroundColor: COLORS.black}}>
+  <View style={{ backgroundColor: COLORS.black, paddingBottom: 150}}>
     {books.length > 0 ? (
         <FlatList
         data={books}
