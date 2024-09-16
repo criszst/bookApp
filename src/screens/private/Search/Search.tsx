@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View,  StyleSheet} from "react-native";
+import { View,  StyleSheet, TextInput} from "react-native";
 import { Button, SearchBar } from 'react-native-elements';
 
 import SearchBook from '../../../utils/search/searchBook';
@@ -12,19 +12,34 @@ const Search = ({ navigation }) => {
     const[input, setInput] = useState(String)
     const [myBooks, setMyBooks] = React.useState(myBooksData);
 
+    const handleBlur = () => { 
+        return console.log('odeio esse blur socorro'); 
+    }; 
+
     return (
         <View style={styles.container}>
             <View style={styles.viewInput}>
                 <SearchBar
-                    platform="android"
+                platform='android'
+                autoComplete='name'
+                onBlur={handleBlur}
+                
+                style={{
+                    height: 50,
+                    borderColor: '#919191',
+                    borderWidth: 1,
+                    margin: 10,
+                    paddingLeft: 15,
+                    borderRadius: 10,
+                  }}
                     placeholder="Digite o nome do livro"
-                    placeholderTextColor="#888"
                     onChangeText={(text) => setInput(text)}
                 />
 
+
             </View>
             <View >
-                <SearchBook input={input} con={input} style={styles.searchList}></SearchBook>
+                <SearchBook input={input}  ></SearchBook>
             </View>
         </View>
     )
