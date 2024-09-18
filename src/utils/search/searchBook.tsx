@@ -103,19 +103,22 @@ const SearchBook = ({ input }) => {
 
           {/* GÊNERO */}
           <View style={{ flexDirection: 'row', marginTop: SIZES.base, marginBottom: SIZES.base }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkGreen, height: 50, borderRadius: SIZES.radius, marginBottom: SIZES.base }}>
+          
               {String(item.volumeInfo.categories).length > 1 ? (
+                  <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkGreen, height: 50, borderRadius: SIZES.radius, marginBottom: SIZES.base }}>
               <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>{item.volumeInfo.categories}</Text>
-              
+              </View>
               )
               : (
 
-              <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>aa</Text>
+                <View style={{ backgroundColor: COLORS.black }}>
+                <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>aa</Text>
+                </View>
 
               )}
               
           
-            </View>
+          
 
 
           </View>
