@@ -72,8 +72,8 @@ const SearchBook = ({ input }) => {
         <View style={{ flex: 1, marginLeft: SIZES.radius }}>
           {/* NOME DO LIVRO E DO AUTOR */}
           <View>
-            <Text style={{ paddingRight: SIZES.padding, ...FONTS.h3, color: COLORS.white }}>{item.volumeInfo.title}</Text>
-            <Text style={{ ...FONTS.h3, color: COLORS.lightGray }}>{String(item.volumeInfo.authors).replace(' ', ', ')}</Text>
+            <Text style={{ paddingRight: SIZES.padding, ...FONTS.h3, color: COLORS.white }}>{item.volumeInfo.title == null ? 'Título Indisponivel' : item.volumeInfo.title}</Text>
+            <Text style={{ ...FONTS.h3, color: COLORS.lightGray }}>{item.volumeInfo.authors == null ? 'Autor não encontrado' : String(item.volumeInfo.authors).replace(' ', ', ')}</Text>
           </View>
 
           {/* INFO LIVRO */}
@@ -103,22 +103,19 @@ const SearchBook = ({ input }) => {
 
           {/* GÊNERO */}
           <View style={{ flexDirection: 'row', marginTop: SIZES.base, marginBottom: SIZES.base }}>
-          
-              {String(item.volumeInfo.categories).length > 1 ? (
-                  <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkGreen, height: 50, borderRadius: SIZES.radius, marginBottom: SIZES.base }}>
-              <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>{item.volumeInfo.categories}</Text>
+
+            {item.volumeInfo.categories == null ? (
+             <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkGreen, height: 50, borderRadius: SIZES.radius, marginBottom: SIZES.base }}>
+                <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>Sem Gênero</Text>
               </View>
-              )
+            )
               : (
 
-                <View style={{ backgroundColor: COLORS.black }}>
-                <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>aa</Text>
+                <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkGreen, height: 50, borderRadius: SIZES.radius, marginBottom: SIZES.base }}>
+                  <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>{item.volumeInfo.categories}</Text>
                 </View>
 
               )}
-              
-          
-          
 
 
           </View>
