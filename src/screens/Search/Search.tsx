@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View,  StyleSheet, TextInput} from "react-native";
 import { Button, SearchBar } from 'react-native-elements';
 
-import SearchBook from '../../../utils/search/searchBook';
-import { COLORS } from "../../../constants";
-import { myBooksData } from '../../../components/booksData';
+import SearchBook from '../../utils/search/searchBook';
+import { COLORS } from "../../constants";
+import { myBooksData } from '../../components/booksData';
 
 
 const Search = ({ navigation }) => {

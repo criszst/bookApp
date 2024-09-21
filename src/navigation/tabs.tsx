@@ -5,12 +5,15 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home } from "../screens";
 
-import Login from "../screens/public/Login/Login";
-import Search from '../screens/private/Search/Search'
+
+
+import Login from "../screens/Login/Login";
+import Search from '../screens/Search/Search'
+import { BookReader } from '../screens'
 
 
 import { icons, COLORS } from "../constants";
-import Library from "../screens/private/Library/Library";
+import Library from "../screens/Library/Library";
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -105,6 +108,13 @@ const Tabs = () => {
                 name="Library"
                 component={Library}
             />
+
+            <Tab.Screen
+                name="BookReader"
+                component={BookReader}
+            />
+
+
             <Tab.Screen
                 name="Setting"
                 component={Login}

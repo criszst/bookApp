@@ -39,3 +39,9 @@ package-lock.json
 package-json
 
 %ProgramData%
+
+# android
+/android
+
+# pdf
+src/assets/pdf*

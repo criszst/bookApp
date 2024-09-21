@@ -1,4 +1,7 @@
 {
   "name": "Book List",
-  "displayName": "Book List"
+  "displayName": "Book List",
+  "android": {
+    "package": "com.anonymous.booklist"
+  }
 }

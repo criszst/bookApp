@@ -12,15 +12,15 @@ import {
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-import { renderHead } from '../../../utils/home/headSection'
-import { renderButtonSection } from "../../../utils/home/btnSection";
-import { renderMyBookSection } from "../../../utils/home/myBookSection";
+import { renderHead } from '../../utils/home/headSection'
+import { renderButtonSection } from "../../utils/home/btnSection";
+import { renderMyBookSection } from "../../utils/home/myBookSection";
 
-import { COLORS, FONTS, SIZES, icons, images } from '../../../constants';
+import { COLORS, FONTS, SIZES, icons, images } from '../../constants';
 
-import { myBooksData } from "../../../components/booksData";
-import { categoriesData } from "../../../components/categoriesData";
-import getBook from "../../../components/getBook";
+import { myBooksData } from "../../components/booksData";
+import { categoriesData } from "../../components/categoriesData";
+import getBook from "../../components/getBook";
 
 
 

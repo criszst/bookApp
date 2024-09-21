@@ -1,28 +1,28 @@
 import React, {useState} from "react";
 import {View, Text, Image, ScrollView} from 'react-native';
 import AppIntroSlider from "react-native-app-intro-slider";
-import { COLORS, SIZES } from "../../../constants";
+import { COLORS, SIZES } from "../../constants";
 
 const slides = [
     {
         id: 1,
         title: 'Descubra os melhores livros',
         description: 'asdadasdsadadsaad',
-        image: require('../../../assets/images/assim_que_acaba.jpg')
+        image: require('../../assets/images/assim_que_acaba.jpg')
     },
 
     {
         id: 2,
         title: 'Leia',
         description: 'asdadasdsadadsaad',
-        image: require('../../../assets/images/assim_que_acaba.jpg')
+        image: require('../../assets/images/assim_que_acaba.jpg')
     },
 
     {
         id: 3,
         title: 'Se divirta',
         description: 'asdadasdsadadsaad',
-        image: require('../../../assets/images/assim_que_acaba.jpg')
+        image: require('../../assets/images/assim_que_acaba.jpg')
     },
 ]
 
@@ -60,7 +60,7 @@ const renderSlide = ({item}) => {
     )
 }
 
-const Login = () => {
+const Library = () => {
     const [showHomePage, setShowHomePage] = useState(true);
 
   const buttonLabel = (label) => {
@@ -101,4 +101,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Library;

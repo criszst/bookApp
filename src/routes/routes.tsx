@@ -3,9 +3,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 
 
-import { Home, BookDetail, Login } from "../screens/";
+import { Home, BookDetail, Login, BookReader } from "../screens/";
 
-import Search from '../screens/private/Search/Search'
+import Search from '../screens/Search/Search'
 
 import Tabs from "../navigation/tabs";
 
@@ -35,6 +35,10 @@ export function Routes() {
                 {/* Screens */}
                 <Stack.Screen name="BookDetail" 
                 component={BookDetail} 
+                options={{ headerShown: false }} />
+
+                <Stack.Screen name="BookReader" 
+                component={BookReader} 
                 options={{ headerShown: false }} />
 
                  <Stack.Screen name="Login" 

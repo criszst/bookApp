@@ -8,7 +8,7 @@ import {
     ScrollView,
     Animated
 } from 'react-native';
-import { FONTS, COLORS, SIZES, icons } from "../../constants/";
+import { FONTS, COLORS, SIZES, icons } from "../constants";
 
 const LineDivider = () => {
     return (
@@ -240,7 +240,7 @@ const BookDetail = ({ route, navigation }) => {
                         alignItems: 'center',
                         justifyContent: 'center'
                     }}
-                    onPress={() => console.log("Start Reading")}
+                    onPress={() => navigation.navigate("BookReader")}
                 >
                     <Text style={{ ...FONTS.h3, color: COLORS.white }}>Começar Leitura</Text>
                 </TouchableOpacity>
