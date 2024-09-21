@@ -18,12 +18,12 @@ import getBook from "../../components/getBook";
 import axios from "axios";
 
 
-const SearchBook = ({ input }) => {
+const SearchBook = ({ input, navigation }) => {
   const [books, setBooks] = useState([]);
 
   async function bookGoogle(query: String): Promise<any> {
     // const apiKey = 'AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo';
-    const url = 'https://www.googleapis.com/books/v1/volumes?q=' + query
+    const url = 'https://www.googleapis.com/books/v1/volumes?q=' + query + '&langRestrict=pt'
 
     try {
       const requestBook = await axios.get(url);
@@ -48,89 +48,11 @@ const SearchBook = ({ input }) => {
   }, [input]);
 
 
-  const renderItem = ({ item }): React.JSX.Element => (
-
-    <View style={{
-      flex: 1, marginVertical: SIZES.base, backgroundColor: COLORS.black, marginRight: SIZES.base, marginLeft: 20,
-
-    }}>
-      <TouchableOpacity
-        style={{
-          flex: 1, flexDirection: 'row',
-          borderColor: COLORS.lightGray, // Cor da borda
-        }}
-      >
-        {/* CAPA DO LIVRO */}
-        <Image
-          src={`http://books.google.com/books/content?id=${item.id}&printsec=frontcover&img=1&zoom=1&source=gbs_api`}
-          resizeMode="cover"
-          style={{
-            width: 110, height: 'auto', borderRadius: SIZES.radius,
-          }}
-        />
-
-        <View style={{ flex: 1, marginLeft: SIZES.radius }}>
-          {/* NOME DO LIVRO E DO AUTOR */}
-          <View>
-            <Text style={{ paddingRight: SIZES.padding, ...FONTS.h3, color: COLORS.white }}>{item.volumeInfo.title == null ? 'Título Indisponivel' : item.volumeInfo.title}</Text>
-            <Text style={{ ...FONTS.h3, color: COLORS.lightGray }}>{item.volumeInfo.authors == null ? 'Autor não encontrado' : String(item.volumeInfo.authors).replace(' ', ', ')}</Text>
-          </View>
-
-          {/* INFO LIVRO */}
-          <View style={{ flexDirection: 'row', marginTop: SIZES.radius }}>
-            <Image
-              source={icons.page_filled_icon}
-              resizeMode="contain"
-              style={{
-                width: 20,
-                height: 20,
-                tintColor: COLORS.lightGray
-              }}
-            />
-            <Text style={{ ...FONTS.body4, color: COLORS.lightGray, paddingHorizontal: SIZES.radius }}>{item.volumeInfo.pageCount}</Text>
-
-            <Image
-              source={icons.read_icon}
-              resizeMode="contain"
-              style={{
-                width: 20,
-                height: 20,
-                tintColor: COLORS.lightGray
-              }}
-            />
-            <Text style={{ ...FONTS.body4, color: COLORS.lightGray, paddingHorizontal: SIZES.radius }}>{item.readed}</Text>
-          </View>
-
-          {/* GÊNERO */}
-          <View style={{ flexDirection: 'row', marginTop: SIZES.base, marginBottom: SIZES.base }}>
-
-            {item.volumeInfo.categories == null ? (
-             <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkGreen, height: 50, borderRadius: SIZES.radius, marginBottom: SIZES.base }}>
-                <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>Sem Gênero</Text>
-              </View>
-            )
-              : (
-
-                <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkGreen, height: 50, borderRadius: SIZES.radius, marginBottom: SIZES.base }}>
-                  <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>{item.volumeInfo.categories}</Text>
-                </View>
-
-              )}
-
-
-          </View>
-        </View>
-      </TouchableOpacity>
-
-      {/* BOTAO DE FAVORITAR */}
-      <TouchableOpacity
-        style={{ position: 'absolute', top: 5, right: 15 }}
-        onPress={() => console.log("Bookmark")}
-      >
-        <MaterialCommunityIcons name="heart-multiple-outline" size={24} color="white" />
-      </TouchableOpacity>
-    </View>
-  );
+  const renderItem = ({ item }) => {
+    return (
+      getBook(item, navigation)
+    )
+  };
 
 
   return (
@@ -145,7 +67,12 @@ const SearchBook = ({ input }) => {
           ></FlatList>
 
         ) : (
-          <Text style={{ color: '#FFF' }}>Nenhum livro encontrado</Text>
+          <View
+          style={{marginVertical: SIZES.base - 9, backgroundColor: COLORS.black, marginRight: SIZES.base, marginLeft: 20, }}
+          >
+             <Text style={{ color: '#FFF' }}>Nenhum livro encontrado</Text>
+          </View>
+         
         )}
       </View>
     </SafeAreaView>

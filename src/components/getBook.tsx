@@ -14,7 +14,7 @@ import { COLORS, FONTS, SIZES, icons, } from '../constants';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
-const getBook = (item: { bookCover: ImageSourcePropType | undefined; bookName: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; author: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; pageNo: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; readed: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; genre: string | string[]; }, navigation: { navigate: (arg0: string, arg1: { book: any; }) => void; }) => {
+const getBook = (item, navigation ) => {
 
     const handleBookPress = (item) => {
         navigation.navigate("BookDetail", { book: item });
@@ -22,88 +22,86 @@ const getBook = (item: { bookCover: ImageSourcePropType | undefined; bookName: s
 
 
     return (
-        <View style={{ flex: 1, marginVertical: SIZES.base, backgroundColor: COLORS.black, marginRight: SIZES.base, marginLeft: 20,
-            
-        }}>
+        <View style={{
+            flex: 1, marginVertical: SIZES.base, backgroundColor: COLORS.black, marginRight: SIZES.base, marginLeft: 20,
+      
+          }}>
             <TouchableOpacity
-                style={{ flex: 1, flexDirection: 'row',
-                    borderColor: COLORS.lightGray, // Cor da borda
-                 }}
-                onPress={() => handleBookPress}
+              style={{
+                flex: 1, flexDirection: 'row',
+                borderColor: COLORS.lightGray, // Cor da borda
+              }}
             >
-                {/* CAPA DO LIVRO */}
-                <Image
-                    source={item.bookCover}
-                    resizeMode="cover"
-                    style={{ width: 100, height: 150, borderRadius: 10,
-
-                     }}
-                />
-
-                <View style={{ flex: 1, marginLeft: SIZES.radius }}>
-                    {/* NOME DO LIVRO E DO AUTOR */}
-                    <View>
-                        <Text style={{ paddingRight: SIZES.padding, ...FONTS.h3, color: COLORS.white }}>{item.bookName}</Text>
-                        <Text style={{ ...FONTS.h3, color: COLORS.lightGray }}>{item.author}</Text>
-                    </View>
-
-                    {/* INFO LIVRO */}
-                    <View style={{ flexDirection: 'row', marginTop: SIZES.radius }}>
-                        <Image
-                            source={icons.page_filled_icon}
-                            resizeMode="contain"
-                            style={{
-                                width: 20,
-                                height: 20,
-                                tintColor: COLORS.lightGray
-                            }}
-                        />
-                        <Text style={{ ...FONTS.body4, color: COLORS.lightGray, paddingHorizontal: SIZES.radius }}>{item.pageNo}</Text>
-
-                        <Image
-                            source={icons.read_icon}
-                            resizeMode="contain"
-                            style={{
-                                width: 20,
-                                height: 20,
-                                tintColor: COLORS.lightGray
-                            }}
-                        />
-                        <Text style={{ ...FONTS.body4, color: COLORS.lightGray, paddingHorizontal: SIZES.radius }}>{item.readed}</Text>
-                    </View>
-
-                    {/* GÊNERO */}
-                    <View style={{ flexDirection: 'row', marginTop: SIZES.base }}>
-                        {
-                            item.genre.includes("Adventure") &&
-                            <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkGreen, height: 40, borderRadius: SIZES.radius }}>
-                                <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>Adventure</Text>
-                            </View>
-                        }
-                        {
-                            item.genre.includes("Romance") &&
-                            <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkRed, height: 40, borderRadius: SIZES.radius }}>
-                                <Text style={{ ...FONTS.body5, color: COLORS.lightRed }}>Romance</Text>
-                            </View>
-                        }
-                        {
-                            item.genre.includes("Drama") &&
-                            <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkBlue, height: 40, borderRadius: SIZES.radius }}>
-                                <Text style={{ ...FONTS.body5, color: COLORS.lightBlue }}>Drama</Text>
-                            </View>
-                        }
-                    </View>
+              {/* CAPA DO LIVRO */}
+              <Image
+                src={`http://books.google.com/books/content?id=${item.id}&printsec=frontcover&img=1&zoom=1&source=gbs_api`}
+                resizeMode="cover"
+                style={{
+                  width: 110, height: 'auto', borderRadius: SIZES.radius,
+                }}
+              />
+      
+              <View style={{ flex: 1, marginLeft: SIZES.radius }}>
+                {/* NOME DO LIVRO E DO AUTOR */}
+                <View>
+                  <Text style={{ paddingRight: SIZES.padding, ...FONTS.h3, color: COLORS.white }}>{item.volumeInfo.title == null ? 'Título Indisponivel' : item.volumeInfo.title}</Text>
+                  <Text style={{ ...FONTS.h3, color: COLORS.lightGray }}>{item.volumeInfo.authors == null ? 'Autor não encontrado' : String(item.volumeInfo.authors).replace(' ', ', ')}</Text>
                 </View>
+      
+                {/* INFO LIVRO */}
+                <View style={{ flexDirection: 'row', marginTop: SIZES.radius }}>
+                  <Image
+                    source={icons.page_filled_icon}
+                    resizeMode="contain"
+                    style={{
+                      width: 20,
+                      height: 20,
+                      tintColor: COLORS.lightGray
+                    }}
+                  />
+                  <Text style={{ ...FONTS.body4, color: COLORS.lightGray, paddingHorizontal: SIZES.radius }}>{item.volumeInfo.pageCount}</Text>
+      
+                  <Image
+                    source={icons.read_icon}
+                    resizeMode="contain"
+                    style={{
+                      width: 20,
+                      height: 20,
+                      tintColor: COLORS.lightGray
+                    }}
+                  />
+                  <Text style={{ ...FONTS.body4, color: COLORS.lightGray, paddingHorizontal: SIZES.radius }}>{item.readed}</Text>
+                </View>
+      
+                {/* GÊNERO */}
+                <View style={{ flexDirection: 'row', marginTop: SIZES.base, marginBottom: SIZES.base }}>
+      
+                  {item.volumeInfo.categories == null ? (
+                   <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkGreen, height: 50, borderRadius: SIZES.radius, marginBottom: SIZES.base }}>
+                      <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>Sem Gênero</Text>
+                    </View>
+                  )
+                    : (
+      
+                      <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkGreen, height: 50, borderRadius: SIZES.radius, marginBottom: SIZES.base }}>
+                        <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>{item.volumeInfo.categories}</Text>
+                      </View>
+      
+                    )}
+      
+      
+                </View>
+              </View>
             </TouchableOpacity>
-
+      
             {/* BOTAO DE FAVORITAR */}
             <TouchableOpacity
-                style={{ position: 'absolute', top: 5, right: 15 }}
-                onPress={() => console.log("Bookmark")}
+              style={{ position: 'absolute', top: 5, right: 15 }}
+              onPress={() => console.log("Bookmark")}
             >
-                <MaterialCommunityIcons name="heart-multiple-outline" size={24} color="white" />
+              <MaterialCommunityIcons name="heart-multiple-outline" size={24} color="white" />
             </TouchableOpacity>
-        </View>
+          </View>
     )
 }
 
