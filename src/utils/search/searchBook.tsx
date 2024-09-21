@@ -9,6 +9,8 @@ import {
   SafeAreaView
 } from 'react-native';
 
+import { ActivityIndicator } from 'react-native';
+
 
 import { COLORS, FONTS, SIZES, icons, } from '../../constants';
 
@@ -20,6 +22,7 @@ import axios from "axios";
 
 const SearchBook = ({ input, navigation }) => {
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   async function bookGoogle(query: String): Promise<any> {
     // const apiKey = 'AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo';
@@ -41,39 +44,43 @@ const SearchBook = ({ input, navigation }) => {
 
   useEffect(() => {
     if (input) {
+      setLoading(true)
       bookGoogle(input).then(items => {
         setBooks(items);
+        setLoading(false)
       });
     }
   }, [input]);
 
 
   const renderItem = ({ item }) => {
-    return (
-      getBook(item, navigation)
-    )
+    return getBook({ item, navigation }); 
   };
 
 
   return (
     <SafeAreaView style={{ backgroundColor: COLORS.black }}>
       <View style={{ backgroundColor: COLORS.black, paddingBottom: 150 }}>
-        {books.length > 0 ? (
+      {loading ? (
+
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <ActivityIndicator size="large" color="#ffffff" />
+        </View>
+      ) : (
+        books.length > 0 ? (
           <FlatList
             data={books}
             renderItem={renderItem}
-
             keyExtractor={(item, index) => index.toString()}
-          ></FlatList>
-
+          />
         ) : (
           <View
-          style={{marginVertical: SIZES.base - 9, backgroundColor: COLORS.black, marginRight: SIZES.base, marginLeft: 20, }}
+            style={{marginVertical: SIZES.base - 9, backgroundColor: COLORS.black, marginRight: SIZES.base, marginLeft: 20 }}
           >
-             <Text style={{ color: '#FFF' }}>Nenhum livro encontrado</Text>
+            <Text style={{ color: '#FFF' }}>Nenhum livro encontrado</Text>
           </View>
-         
-        )}
+        )
+      )}
       </View>
     </SafeAreaView>
   );

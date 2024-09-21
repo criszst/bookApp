@@ -14,7 +14,7 @@ import { COLORS, FONTS, SIZES, icons, } from '../constants';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
-const getBook = (item, navigation ) => {
+export function  getBook ({ item, navigation }) {
 
     const handleBookPress = (item) => {
         navigation.navigate("BookDetail", { book: item });
@@ -31,6 +31,7 @@ const getBook = (item, navigation ) => {
                 flex: 1, flexDirection: 'row',
                 borderColor: COLORS.lightGray, // Cor da borda
               }}
+              onPress={() => handleBookPress(item)}
             >
               {/* CAPA DO LIVRO */}
               <Image
@@ -45,7 +46,7 @@ const getBook = (item, navigation ) => {
                 {/* NOME DO LIVRO E DO AUTOR */}
                 <View>
                   <Text style={{ paddingRight: SIZES.padding, ...FONTS.h3, color: COLORS.white }}>{item.volumeInfo.title == null ? 'Título Indisponivel' : item.volumeInfo.title}</Text>
-                  <Text style={{ ...FONTS.h3, color: COLORS.lightGray }}>{item.volumeInfo.authors == null ? 'Autor não encontrado' : String(item.volumeInfo.authors).replace(' ', ', ')}</Text>
+                  <Text style={{ ...FONTS.h3, color: COLORS.lightGray }}>{item.volumeInfo.authors == null ? 'Autor não encontrado' : String(item.volumeInfo.authors).split(', ')}</Text>
                 </View>
       
                 {/* INFO LIVRO */}

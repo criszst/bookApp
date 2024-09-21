@@ -6,11 +6,7 @@ import Carousel from 'react-native-reanimated-carousel'
 import { myBooksData } from "../../components/booksData";
 import { ScrollView } from "react-native";
 
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-
-export function renderMyBookSection(myBooks: ArrayLike<any>, navigation) {
-    const scrollX = useSharedValue(0);
-    
+export function renderMyBookSection(myBooks: ArrayLike<any>, navigation) {    
 
     const renderItem = ({ item, index }) => {
         return (
@@ -73,7 +69,7 @@ export function renderMyBookSection(myBooks: ArrayLike<any>, navigation) {
                 </Text>
 
                 <TouchableOpacity
-                    onPress={() => console.log("Ver Mais")}
+                     onPress={() => navigation.navigate("Library")}
                 >
                     <Text style={{ ...FONTS.body3, color: COLORS.lightGray, alignSelf: 'flex-start', textDecorationLine: 'underline' }}>
                         Ver Mais

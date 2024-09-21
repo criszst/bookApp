@@ -42,8 +42,7 @@ export function Routes() {
                 options={{ headerShown: false }} />
 
                 <Stack.Screen name="Search" 
-                component={Search} 
-                options={{ headerShown: false }} />
+                component={Search}  />
 
 
 

@@ -110,7 +110,13 @@ const Home = ({ navigation }) => {
 
         return (
             <View style={{ flex: 1, paddingLeft: SIZES.padding }}>
-                
+                <FlatList
+                    data={categories}
+                    showsHorizontalScrollIndicator={false}
+                    renderItem={renderItem}
+                    keyExtractor={item => `${item.id}`}
+                    horizontal
+                />
             </View>
         )
     }
@@ -124,12 +130,12 @@ const Home = ({ navigation }) => {
             books = selectedCategoryBooks[0].books
         }
 
-        // const renderItem = ({ item }) => {
-        //     return (
-        //        getBook(item, navigation)
+        const renderItem = ({ item }) => {
+            return (
+               getBook({ item, navigation })
                
-        //     )
-        // }
+            )
+        }
 
         return (
             <View style={{ flex: 1, marginTop: SIZES.radius }}>

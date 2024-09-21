@@ -10,21 +10,16 @@ import Search from '../screens/private/Search/Search'
 
 
 import { icons, COLORS } from "../constants";
+import Library from "../screens/private/Library/Library";
+
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
-
-const tabOptions = {
-    showLabel: false,
-    style: {
-        height: "10%",
-        backgroundColor: COLORS.black
-    }
-}
 
 const Tabs = () => {
     return (
         <Tab.Navigator
-        screenOptions={({ route }) => ({
+            screenOptions={({ route }) => ({
                 headerShown: false,
                 tabBarShowLabel: false,
                 tabBarStyle: {
@@ -59,6 +54,14 @@ const Tabs = () => {
                                         height: 25
                                     }}
                                 />
+                            )
+                        case "Library":
+                            return (
+                                
+                               <Ionicons name="library-outline" size={30} 
+                               style={{
+                                color: tintColor}
+                            } />
                             )
 
                         case "Notification":
@@ -99,8 +102,8 @@ const Tabs = () => {
                 component={Search}
             />
             <Tab.Screen
-                name="Notification"
-                component={Login}
+                name="Library"
+                component={Library}
             />
             <Tab.Screen
                 name="Setting"
