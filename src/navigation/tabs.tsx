@@ -109,11 +109,6 @@ const Tabs = () => {
                 component={Library}
             />
 
-            <Tab.Screen
-                name="BookReader"
-                component={BookReader}
-            />
-
 
             <Tab.Screen
                 name="Setting"

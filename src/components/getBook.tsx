@@ -7,7 +7,7 @@ import {
     Image,
     ImageSourcePropType,
 } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 
 import { COLORS, FONTS, SIZES, icons, } from '../constants';
 
@@ -15,11 +15,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
 export function  getBook ({ item, navigation }) {
-
-    const handleBookPress = (item) => {
-        navigation.navigate("BookDetail", { book: item });
-    };
-
+  const nav = useNavigation();
 
     return (
         <View style={{
@@ -31,7 +27,7 @@ export function  getBook ({ item, navigation }) {
                 flex: 1, flexDirection: 'row',
                 borderColor: COLORS.lightGray, // Cor da borda
               }}
-              onPress={() => handleBookPress(item)}
+              onPress={() => nav.navigate("BookDetail", { book: item })}
             >
               {/* CAPA DO LIVRO */}
               <Image
