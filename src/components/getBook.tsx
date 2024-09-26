@@ -14,7 +14,7 @@ import { COLORS, FONTS, SIZES, icons, } from '../constants';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
-export function  getBook ({ item, navigation }) {
+const getBook = ({ item, navigation }) => {
   const nav = useNavigation();
 
     return (

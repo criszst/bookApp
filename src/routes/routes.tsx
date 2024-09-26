@@ -8,6 +8,7 @@ import { Home, BookDetail, Login, BookReader } from "../screens/";
 import Search from '../screens/Search/Search'
 
 import Tabs from "../navigation/tabs";
+import getBook from '../components/getBook';
 
 const theme = {
     ...DefaultTheme,
@@ -47,8 +48,6 @@ export function Routes() {
 
                 <Stack.Screen name="Search" 
                 component={Search}  />
-
-
 
             </Stack.Navigator>
     )
