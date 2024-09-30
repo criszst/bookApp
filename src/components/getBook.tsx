@@ -5,7 +5,6 @@ import {
     Text,
     TouchableOpacity,
     Image,
-    ImageSourcePropType,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -14,9 +13,7 @@ import { COLORS, FONTS, SIZES, icons, } from '../constants';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
-const getBook = ({ item, navigation }) => {
-  const nav = useNavigation();
-
+const GetBook = ({ item, navigation }) => {
     return (
         <View style={{
             flex: 1, marginVertical: SIZES.base, backgroundColor: COLORS.black, marginRight: SIZES.base, marginLeft: 20,
@@ -27,11 +24,14 @@ const getBook = ({ item, navigation }) => {
                 flex: 1, flexDirection: 'row',
                 borderColor: COLORS.lightGray, // Cor da borda
               }}
-              onPress={() => nav.navigate("BookDetail", { book: item })}
+               onPress={() => navigation.navigate("BookDetail", { book: item })} 
             >
               {/* CAPA DO LIVRO */}
               <Image
-                src={`http://books.google.com/books/content?id=${item.id}&printsec=frontcover&img=1&zoom=1&source=gbs_api`}
+                source={{ 
+                  uri: 
+                  item.volumeInfo.imageLinks?.thumbnail ||
+                  `http://books.google.com/books/content?id=${item.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}}
                 resizeMode="cover"
                 style={{
                   width: 110, height: 'auto', borderRadius: SIZES.radius,
@@ -102,4 +102,4 @@ const getBook = ({ item, navigation }) => {
     )
 }
 
-export default getBook;
+export default GetBook;

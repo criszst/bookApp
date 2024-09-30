@@ -20,7 +20,7 @@ import { COLORS, FONTS, SIZES, icons, images } from '../../constants';
 
 import { myBooksData } from "../../components/booksData";
 import { categoriesData } from "../../components/categoriesData";
-import getBook from "../../components/getBook";
+import GetBook from "../../components/getBook";
 
 
 
@@ -131,10 +131,7 @@ const Home = ({ navigation }) => {
         }
 
         const renderItem = ({ item }) => {
-            return (
-               getBook({ item, navigation })
-               
-            )
+            return <GetBook item={item} navigation={navigation} />;
         }
 
         return (

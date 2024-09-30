@@ -16,7 +16,7 @@ import { COLORS, FONTS, SIZES, icons, } from '../../constants';
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-import getBook from "../../components/getBook";
+import GetBook from "../../components/getBook";
 import axios from "axios";
 
 
@@ -26,10 +26,15 @@ const SearchBook = ({ input, navigation }) => {
 
   async function bookGoogle(query: String): Promise<any> {
     // const apiKey = 'AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo';
-    const url = 'https://www.googleapis.com/books/v1/volumes?q=' + query + '&langRestrict=pt'
-
     try {
-      const requestBook = await axios.get(url);
+      const requestBook = await axios.get(
+        'https://www.googleapis.com/books/v1/volumes?',
+        {
+          params: {
+            q: query,
+          },
+        },
+      );
       const data = requestBook.data;
 
       return data.items.slice(0, 7);
@@ -54,7 +59,7 @@ const SearchBook = ({ input, navigation }) => {
 
 
   const renderItem = ({ item }) => {
-    return getBook({ item, navigation }); 
+    return <GetBook item={item} navigation={navigation} />;
   };
 
 

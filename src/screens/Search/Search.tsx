@@ -39,7 +39,7 @@ const Search = ({ navigation }) => {
 
             </View>
             <View >
-                <SearchBook input={input}  ></SearchBook>
+                <SearchBook input={input} navigation={navigation} ></SearchBook>
             </View>
         </View>
     )
