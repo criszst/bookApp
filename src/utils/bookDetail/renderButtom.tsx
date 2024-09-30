@@ -51,7 +51,7 @@ export function renderBottomButton(book, navigation) {
                     }}
                     onPress={() => navigation.navigate("BookReader", {item: book})}
                 >
-                    <Text style={{ ...FONTS.h3, color: COLORS.white }}>Ver Amostra</Text>
+                    <Text style={{ ...FONTS.h3, color: COLORS.white }}>Amostra Gratuita</Text>
                 </TouchableOpacity>
             </View>
         )
