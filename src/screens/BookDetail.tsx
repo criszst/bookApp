@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {
     View,
     Text,
@@ -28,10 +28,9 @@ const LineDivider = () => {
 }
 
 const BookDetail = ({ route, navigation }) => {
-
     
 
-    const [book, setBook] = React.useState(null);
+    const [book, setBook] = useState(null);
 
     const [scrollViewWholeHeight, setScrollViewWholeHeight] = React.useState(1);
     const [scrollViewVisibleHeight, setScrollViewVisibleHeight] = React.useState(0);
@@ -43,35 +42,35 @@ const BookDetail = ({ route, navigation }) => {
         setBook(book)
     }, [book])
 
-    async function authorInfo(query: String) {
-        // const apiKey = 'AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo';
-        console.log(query)
+    const [author, setAuthor] = useState(String);
+
+
+    async function authorInfo(query: string) {
         try {
-         const requestBook = await axios.get(
-            `https://www.goodreads.com/book/auto_complete?format=json&q=${query}`,
-          )
+            const requestData = await axios.get(
+                `https://openlibrary.org/search/authors.json?q=${query}`,
+            );
+            const data = requestData.data;
 
-          const data = requestBook.data;
-
-      return data[0].description.html
     
-    
+            return data;
         } catch (error) {
-          console.error("Erro nessa bosta se vira aí > ", error);
-          return [];
+            console.error("Erro na requisição > ", error);
+            return [];
         }
-      }
+    }
     
-
-
     function renderBookInfoSection() {
-        (async () => {
-            const result = await authorInfo("Harry");
-            console.log(result);
-        })();
-
-        console.log(`${String(book.volumeInfo.authors).split(' ')[0]}`)
-        console.log(authorInfo(`${String(book.volumeInfo.authors).split(' ')[0]}`))
+        const authorQuery = encodeURIComponent(book.volumeInfo.authors[0]);
+    
+        authorInfo(authorQuery).then((r) => {
+            // Verifica a estrutura antes de acessar 'docs'
+            if (r.docs && r.docs.length > 0) {
+                setAuthor(r.docs[0])
+            } else {
+                console.log("Nenhum autor encontrado.");
+            }
+        });
         return (
             <View style={styles.container}>
                 <ImageBackground
@@ -178,11 +177,11 @@ const BookDetail = ({ route, navigation }) => {
 
         return (
         <><View style={styles.authorBox}>
-                <Image source={{ uri: book.volumeInfo.imageLinks.thumbnail }} style={styles.authorImage} />
+                <Image source={{ uri: 'https://www.shutterstock.com/image-vector/feather-author-writer-logo-design-260nw-1450954472.jpg' }} style={styles.authorImage} />
                 <View>
-                    <Text style={{ color: '#FFF'}}>{book.volumeInfo.authors || '...'}</Text>
-                    <Text numberOfLines={2} style={styles.authorDetails}>
-                        AAAAAA
+                    <Text style={{ color: '#FFF'}}>{author.name}</Text>
+                    <Text numberOfLines={3} style={styles.authorDetails}>
+                        {author.top_subjects[0]}
                     </Text>
                 </View>
             </View>
