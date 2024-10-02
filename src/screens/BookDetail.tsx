@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
     View,
     Text,
@@ -15,6 +15,7 @@ import { useTheme, useIsFocused } from '@react-navigation/native';
 import { renderBottomButton } from '../utils/bookDetail/renderButtom'
 
 import { FONTS, COLORS, SIZES, icons } from "../constants";
+import axios from "axios";
 
 
 
@@ -28,6 +29,8 @@ const LineDivider = () => {
 
 const BookDetail = ({ route, navigation }) => {
 
+    
+
     const [book, setBook] = React.useState(null);
 
     const [scrollViewWholeHeight, setScrollViewWholeHeight] = React.useState(1);
@@ -40,7 +43,35 @@ const BookDetail = ({ route, navigation }) => {
         setBook(book)
     }, [book])
 
+    async function authorInfo(query: String) {
+        // const apiKey = 'AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo';
+        console.log(query)
+        try {
+         const requestBook = await axios.get(
+            `https://www.goodreads.com/book/auto_complete?format=json&q=${query}`,
+          )
+
+          const data = requestBook.data;
+
+      return data[0].description.html
+    
+    
+        } catch (error) {
+          console.error("Erro nessa bosta se vira aí > ", error);
+          return [];
+        }
+      }
+    
+
+
     function renderBookInfoSection() {
+        (async () => {
+            const result = await authorInfo("Harry");
+            console.log(result);
+        })();
+
+        console.log(`${String(book.volumeInfo.authors).split(' ')[0]}`)
+        console.log(authorInfo(`${String(book.volumeInfo.authors).split(' ')[0]}`))
         return (
             <View style={styles.container}>
                 <ImageBackground
@@ -49,7 +80,7 @@ const BookDetail = ({ route, navigation }) => {
                         book.volumeInfo.imageLinks?.thumbnail ||
                         `http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}}
                     resizeMode="cover"
-                    blurRadius={2} 
+                    blurRadius={3} 
                     style={{
                         position: 'absolute',
                         top: 0,
@@ -220,7 +251,7 @@ const BookDetail = ({ route, navigation }) => {
                 >
                     {/* Rating */}
                     <View style={{ flex: 1, alignItems: 'center' }}>
-                        <Text style={{ ...FONTS.h3, color: COLORS.black }}>{book.volumeInfo.averageRating}</Text>
+                        <Text style={{ ...FONTS.h3, color: COLORS.white }}>{book.volumeInfo.averageRating === '' ? 'Sem Avaliação' : book.volumeInfo.averageRating}</Text>
                         <Text style={{ ...FONTS.body4, color: COLORS.white }}>Avaliação</Text>
                     </View>
 

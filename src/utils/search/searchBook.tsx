@@ -40,7 +40,6 @@ const SearchBook = ({ input, navigation }) => {
       return data.items.slice(0, 7);
 
 
-
     } catch (error) {
       console.error("Erro nessa bosta se vira aí > ", error);
       return [];
