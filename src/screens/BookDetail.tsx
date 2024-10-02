@@ -179,9 +179,9 @@ const BookDetail = ({ route, navigation }) => {
         <><View style={styles.authorBox}>
                 <Image source={{ uri: 'https://www.shutterstock.com/image-vector/feather-author-writer-logo-design-260nw-1450954472.jpg' }} style={styles.authorImage} />
                 <View>
-                    <Text style={{ color: '#FFF'}}>{author.name}</Text>
+                    <Text style={{ color: '#FFF'}}>{String(author.name)}</Text>
                     <Text numberOfLines={3} style={styles.authorDetails}>
-                        {author.top_subjects[0]}
+                    {String(author.top_subjects[0])}
                     </Text>
                 </View>
             </View>
