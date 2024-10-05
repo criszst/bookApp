@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import { View,  StyleSheet, TextInput} from "react-native";
-import { Button, SearchBar } from 'react-native-elements';
+import { View,  StyleSheet} from "react-native";
 
 import SearchBook from '../../utils/search/searchBook';
 import { COLORS, icons } from "../../constants";
 import { myBooksData } from '../../components/booksData';
-import { Searchbar } from 'react-native-paper';
+import { Searchbar, MD3Colors, useTheme } from 'react-native-paper';
 
 
 const Search = ({ navigation }) => {
 
+    const { isV3, colors } = useTheme();
+
     const[input, setInput] = useState(String)
+    const [query, setSearchQuery] = React.useState({
+        searchBarText: '',
+      });
     const [myBooks, setMyBooks] = React.useState(myBooksData);
+    const [isVisible, setIsVisible] = React.useState(false);
 
     const handleBlur = () => { 
         return console.log('odeio esse blur socorro'); 
@@ -22,24 +27,16 @@ const Search = ({ navigation }) => {
             <View style={styles.viewInput}>
             <Searchbar
       placeholder="Buscar Livros"
-      onChangeText={(text) => setInput(text)}
-      loading={false}
-      elevation={4}
-      onClearIconPress={() => console.log('a')}
-      style={{
-        height: 50,
-        borderColor: '#919191',
-        borderWidth: 1,
-        margin: 11,
-        paddingLeft: 15,
-        borderRadius: 10,
-      }}
-    />
+      onChangeText={(text) => setSearchQuery({...query, searchBarText: text})}
 
+      mode="bar"
+      style={styles.searchBar}
+        value={query.searchBarText}
+    />
 
             </View>
             <View >
-                <SearchBook input={input} navigation={navigation} ></SearchBook>
+                <SearchBook input={query.searchBarText} navigation={navigation} ></SearchBook>
             </View>
         </View>
     )
@@ -56,14 +53,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
 
-    input: {
-        backgroundColor: COLORS.lightGray,
-        borderRadius: 10,
-        fontSize: 15,
-    },
-
-    searchList: {
-        height: 500,
+    searchBar: {
+        margin: 4,
     }
 })
 

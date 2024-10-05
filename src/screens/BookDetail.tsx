@@ -12,7 +12,7 @@ import {
 
 import { useIsFocused, DarkTheme, } from '@react-navigation/native';
 
-import { Appbar, useTheme, FAB } from 'react-native-paper';
+import { Appbar, useTheme, Chip } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { renderBottomButton } from '../utils/bookDetail/renderButtom'
@@ -20,10 +20,7 @@ import { renderBottomButton } from '../utils/bookDetail/renderButtom'
 import { FONTS, COLORS, SIZES, icons } from "../constants";
 import axios from "axios";
 
-import { LinearGradient } from 'expo-linear-gradient';
-import { color } from "react-native-elements/dist/helpers";
-
-
+import translate from "translate";
 
 const LineDivider = () => {
     return (
@@ -33,12 +30,16 @@ const LineDivider = () => {
     )
 }
 
+translate.engine = "google";
 
 const BookDetail = ({ route, navigation }) => {
-    const theme = useTheme()
-    const { bottom } = useSafeAreaInsets();
-
     const [book, setBook] = useState(null);
+    const [author, setAuthor] = useState('');
+
+    const [translateText, setTranslateText] = React.useState({
+        categorie: 'Nao Encontrado',
+    });
+
 
     const [scrollViewWholeHeight, setScrollViewWholeHeight] = React.useState(1);
     const [scrollViewVisibleHeight, setScrollViewVisibleHeight] = React.useState(0);
@@ -50,37 +51,40 @@ const BookDetail = ({ route, navigation }) => {
         setBook(book)
     }, [book])
 
-    const [author, setAuthor] = useState('');
+    // talvez eu use no futuro, mas por enquanto vamo comentar ne
+    // async function authorInfo(query: string) {
+    //     try {
+    //         const requestData = await axios.get(
+    //             `https://openlibrary.org/search/authors.json?q=${query}`,
+    //         );
+    //         const data = requestData.data;
 
+    //         return data;
+    //     } catch (error) {
+    //         console.error("Erro na requisição > ", error);
+    //         return [];
+    //     }
+    // }
 
-    async function authorInfo(query: string) {
-        try {
-            const requestData = await axios.get(
-                `https://openlibrary.org/search/authors.json?q=${query}`,
-            );
-            const data = requestData.data;
+    async function translatePt(text: string) {
+        if (text === undefined || text === null) {
+            throw new Error("o texto aí nao pode estar vazio bb");
 
-            return data;
-        } catch (error) {
-            console.error("Erro na requisição > ", error);
-            return [];
         }
+
+        const translateCt = await translate(text, 'por')
+        return translateCt
     }
 
     function renderBookInfoSection() {
-        const queryAuthor = encodeURIComponent(book.volumeInfo.authors[0]);
 
-        authorInfo(queryAuthor).then((r) => {
-            if (r.docs && r.docs.length > 0) {
-                // setAuthor(r.docs[1])
-            } else if (r.docs === undefined) {
-                setAuthor('Sem informações do autor')
-                console.log("Nenhum autor encontrado SOCORRO");
+        translatePt(book.volumeInfo.categories).then((r) => {
+            if (r !== null || r !== undefined) {
+                setTranslateText({...translateText, categorie: String(r)})
+            } else {
+                setTranslateText({...translateText, categorie: book.volumeInfo.categories})
             }
-        });
-
-
-
+        })
 
         return (
 
@@ -116,7 +120,7 @@ const BookDetail = ({ route, navigation }) => {
                 <View style={{ backgroundColor: COLORS.black }}>
                     <Appbar.Header mode="center-aligned" style={{ backgroundColor: COLORS.black}} statusBarHeight={20}>
                         <Appbar.BackAction onPress={() => navigation.goBack()} iconColor='#FFF'  />
-                        <Appbar.Content title='Detalhes' disabled={true} titleStyle={{ color: '#FFF'}}  />
+                        <Appbar.Content title={String(book.volumeInfo.title)} disabled={true} titleStyle={{ color: '#FFF'}}  />
                         <Appbar.Action icon="dots-vertical" iconColor='#FFF'  onPress={() => console.log('a')} />
                     </Appbar.Header>
 
@@ -135,7 +139,7 @@ const BookDetail = ({ route, navigation }) => {
                             flex: 1,
                             width: 150,
                             height: "auto",
-                            borderRadius: 30,
+                            borderRadius: 17,
                         }}
                     />
                 </View>
@@ -159,12 +163,17 @@ const BookDetail = ({ route, navigation }) => {
 
         return (
             <><View style={styles.authorBox}>
-                <Image source={{ uri: 'https://www.shutterstock.com/image-vector/feather-author-writer-logo-design-260nw-1450954472.jpg' }} style={styles.authorImage} />
-                <View>
-                    <Text style={{ color: '#FFF' }}>{String(book.volumeInfo.authors[0] === undefined ? 'Sem Informações do Autor ' : book.volumeInfo.authors[0])}</Text>
+                <View >
                     <Text numberOfLines={3} style={styles.authorDetails}>
-                        a
-                        {/* {author.top_subjects[0]} */}
+                    <Chip
+                    compact
+                    onPress={() => { }}
+                    selectedColor={COLORS.lightGreen}
+                    textStyle={{ ...FONTS.body5 }}
+                    style={{ backgroundColor: COLORS.darkGreen }}
+                  >
+                    {translateText.categorie}
+                  </Chip>
                     </Text>
                 </View>
             </View>
@@ -274,7 +283,7 @@ const styles = StyleSheet.create({
     },
 
     bookInfo: {
-        flex: 3,
+        flex: 2.50,
     },
 
     bookAuthor: {
@@ -298,7 +307,7 @@ const styles = StyleSheet.create({
     authorDetails: {
         marginTop: 5,
         opacity: 0.75,
-        width: SIZES.padding - 120,
+        width: 'auto',
         color: '#FFF'
     },
 
