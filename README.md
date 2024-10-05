@@ -16,7 +16,7 @@ However, I've been changing the layouts and adding new components and functions
 # Functions
 - Search for books with the Google Books API and show their details
 
-- Read a free sample of Google Books
+- Read a free sample of a book with the Google Books service
 
 
 
