@@ -3,8 +3,9 @@ import { View,  StyleSheet, TextInput} from "react-native";
 import { Button, SearchBar } from 'react-native-elements';
 
 import SearchBook from '../../utils/search/searchBook';
-import { COLORS } from "../../constants";
+import { COLORS, icons } from "../../constants";
 import { myBooksData } from '../../components/booksData';
+import { Searchbar } from 'react-native-paper';
 
 
 const Search = ({ navigation }) => {
@@ -19,22 +20,21 @@ const Search = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.viewInput}>
-                <SearchBar
-                platform='android'
-                autoComplete='name'
-                onBlur={handleBlur}
-                
-                style={{
-                    height: 50,
-                    borderColor: '#919191',
-                    borderWidth: 1,
-                    margin: 10,
-                    paddingLeft: 15,
-                    borderRadius: 10,
-                  }}
-                    placeholder="Digite o nome do livro"
-                    onChangeText={(text) => setInput(text)}
-                />
+            <Searchbar
+      placeholder="Buscar Livros"
+      onChangeText={(text) => setInput(text)}
+      loading={false}
+      elevation={4}
+      onClearIconPress={() => console.log('a')}
+      style={{
+        height: 50,
+        borderColor: '#919191',
+        borderWidth: 1,
+        margin: 11,
+        paddingLeft: 15,
+        borderRadius: 10,
+      }}
+    />
 
 
             </View>

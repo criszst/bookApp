@@ -18,7 +18,7 @@ export function renderBottomButton(book, navigation) {
                 <TouchableOpacity
                     style={{
                         width: 60,
-                        backgroundColor: COLORS.secondary,
+                        backgroundColor: '#1c2336',
                         marginLeft: SIZES.padding,
                         marginVertical: SIZES.base,
                         borderRadius: SIZES.radius,
@@ -42,7 +42,7 @@ export function renderBottomButton(book, navigation) {
                 <TouchableOpacity
                     style={{
                         flex: 1,
-                        backgroundColor: COLORS.primary,
+                        backgroundColor: '#1c2336',
                         marginHorizontal: SIZES.base,
                         marginVertical: SIZES.base,
                         borderRadius: SIZES.radius,
@@ -51,7 +51,7 @@ export function renderBottomButton(book, navigation) {
                     }}
                     onPress={() => navigation.navigate("BookReader", {item: book})}
                 >
-                    <Text style={{ ...FONTS.h3, color: COLORS.white }}>Amostra Gratuita</Text>
+                    <Text style={{ ...FONTS.h3, color: COLORS.lightGray2 }}>Amostra Gratuita</Text>
                 </TouchableOpacity>
             </View>
         )

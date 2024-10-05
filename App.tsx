@@ -5,6 +5,7 @@ import { View, ActivityIndicator } from 'react-native';
 
 import { useFonts } from '@expo-google-fonts/roboto';
 import { Routes } from './src/routes/routes';
+import { PaperProvider } from 'react-native-paper';
 
 
 const App = () => {
@@ -23,9 +24,11 @@ const App = () => {
   }
 
     return (
+      <PaperProvider>
         <NavigationContainer>
           <Routes />
         </NavigationContainer>
+        </PaperProvider>
       
         );
 }

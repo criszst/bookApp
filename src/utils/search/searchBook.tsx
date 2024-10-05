@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
-  Image,
   FlatList,
   SafeAreaView
 } from 'react-native';
@@ -24,20 +22,24 @@ const SearchBook = ({ input, navigation }) => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  async function bookGoogle(query: String): Promise<any> {
+  async function bookGoogle(query: string): Promise<any> {
     // const apiKey = 'AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo';
     try {
+
       const requestBook = await axios.get(
         'https://www.googleapis.com/books/v1/volumes?',
         {
           params: {
             q: query,
+            langRestrict: 'pt',
+            key: 'AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo',
           },
         },
       );
       const data = requestBook.data;
 
       return data.items.slice(0, 7);
+
 
 
     } catch (error) {

@@ -1,16 +1,11 @@
 import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
-import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
-
-
 
 export const COLORS = {
-    // base colors
     primary: "#3c364c",
-    secondary: "#25282F",
+    secondary: "#1a1d24",
 
-    // colors
-    black: "#1E1B26",
+    black: "#171921",
     white: "#FFFFFF",
     lightGray: "#64676D",
     lightGray2: "#EFEFF0",
@@ -28,7 +23,6 @@ export const COLORS = {
 };
 
 export const SIZES = {
-    // global sizes
     base: 8,
     font: 14,
     radius: 12,
@@ -39,7 +33,7 @@ export const SIZES = {
     largeTitle: 50,
     h1: 30,
     h2: 22,
-    h3: 16,
+    h3: 18,
     h4: 14,
     body1: 30,
     body2: 20,
