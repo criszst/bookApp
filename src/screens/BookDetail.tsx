@@ -104,7 +104,6 @@ const BookDetail = ({ route, navigation }) => {
                     }}
                 />
 
-                {/* Color Overlay */}
                 <View
                     style={{
                         position: 'absolute',
@@ -116,7 +115,7 @@ const BookDetail = ({ route, navigation }) => {
                 >
                 </View>
 
-                {/* Navigation header */}
+                {/* Header */}
                 <View style={{ backgroundColor: COLORS.black }}>
                     <Appbar.Header mode="center-aligned" style={{ backgroundColor: COLORS.black}} statusBarHeight={20}>
                         <Appbar.BackAction onPress={() => navigation.goBack()} iconColor='#FFF'  />
@@ -126,7 +125,7 @@ const BookDetail = ({ route, navigation }) => {
 
                 </View>
 
-                {/* Book Cover */}
+                {/* Capa do livro */}
                 <View style={{ flex: 5, paddingTop: SIZES.padding2, alignItems: 'center' }}>
                     <Image
                         source={{
@@ -179,7 +178,7 @@ const BookDetail = ({ route, navigation }) => {
             </View>
 
                 <View style={{ flex: 1, flexDirection: 'row', padding: 15 }}>
-                    {/* Custom Scrollbar */}
+                    {/* ScrollBar */}
                     <View style={{ width: 0, height: "100%", backgroundColor: COLORS.gray1 }}>
                         <Animated.View
                             style={{
@@ -196,7 +195,7 @@ const BookDetail = ({ route, navigation }) => {
                             }} />
                     </View>
 
-                    {/* Description */}
+                    {/* Descrição */}
                     <ScrollView
                         contentContainerStyle={{ paddingLeft: 15 }}
                         showsVerticalScrollIndicator={false}
@@ -228,9 +227,9 @@ const BookDetail = ({ route, navigation }) => {
                     {renderBookInfoSection()}
                 </View>
 
-                {/* Description */}
+                {/* Descrição */}
                 <View style={styles.bookInfo}>
-                    {/* Book Info */}
+                    {/* Info */}
                     <View
                         style={{
                             flexDirection: 'row',
@@ -240,7 +239,7 @@ const BookDetail = ({ route, navigation }) => {
                             backgroundColor: COLORS.black
                         }}
                     >
-                        {/* Rating */}
+                        {/* Avaliação */}
                         <View style={{ flex: 1, alignItems: 'center', }}>
                             <Text style={{ ...FONTS.h3, color: COLORS.white }} >{book.volumeInfo.averageRating === undefined ? '?' : book.volumeInfo.averageRating}</Text>
                             <Text style={{ ...FONTS.body4, color: COLORS.white }}>Avaliação</Text>
@@ -248,7 +247,7 @@ const BookDetail = ({ route, navigation }) => {
 
                         <LineDivider />
 
-                        {/* Pages */}
+                        {/* Páginas */}
                         <View style={{ flex: 1, paddingHorizontal: SIZES.radius, alignItems: 'center' }}>
                             <Text style={{ ...FONTS.h3, color: COLORS.white }}>{book.volumeInfo.pageCount}</Text>
                             <Text style={{ ...FONTS.body4, color: COLORS.white }}>Páginas</Text>
@@ -256,7 +255,7 @@ const BookDetail = ({ route, navigation }) => {
 
                         <LineDivider />
 
-                        {/* Language */}
+                        {/* Idioma */}
                         <View style={{ flex: 1, alignItems: 'center' }}>
                             <Text style={{ ...FONTS.h3, color: COLORS.white }}>{book.volumeInfo.language}</Text>
                             <Text style={{ ...FONTS.body4, color: COLORS.white }}>Idioma</Text>
@@ -265,7 +264,7 @@ const BookDetail = ({ route, navigation }) => {
                     {renderBookDescription()}
                 </View>
 
-                {/* Buttons */}
+                {/* Botoes */}
                 <View style={{ height: 70, marginBottom: 30 }}>
                     {renderBottomButton(book, navigation)}
                 </View>

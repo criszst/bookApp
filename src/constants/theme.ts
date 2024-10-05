@@ -29,7 +29,7 @@ export const SIZES = {
     padding: 24,
     padding2: 36,
 
-    // font sizes
+    // sizes
     largeTitle: 50,
     h1: 30,
     h2: 22,
@@ -41,7 +41,7 @@ export const SIZES = {
     body4: 14,
     body5: 13,
 
-    // app dimensions
+    // dimensions
     width,
     height
 };

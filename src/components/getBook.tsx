@@ -108,7 +108,7 @@ const GetBook = ({ item, navigation }) => {
         </View>
       </TouchableOpacity>
 
-      {/* BOTAO DE FAVORITAR */}
+      {/* FAVORITAR */}
       <TouchableOpacity
         style={{ position: 'absolute', top: 5, right: 15 }}
         onPress={() => console.log("Bookmark")}

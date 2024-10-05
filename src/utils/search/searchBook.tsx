@@ -23,7 +23,9 @@ const SearchBook = ({ input, navigation }) => {
   const [loading, setLoading] = useState(false);
 
   async function bookGoogle(query: string): Promise<any> {
+    // isso era pra ficar em um arquivo separado, mas dps eu arrumo pq bateu mó sono agr
     // const apiKey = 'AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo';
+
     try {
 
       const requestBook = await axios.get(
