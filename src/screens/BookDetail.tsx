@@ -78,13 +78,13 @@ const BookDetail = ({ route, navigation }) => {
 
     function renderBookInfoSection() {
 
-        translatePt(book.volumeInfo.categories).then((r) => {
-            if (r !== null || r !== undefined) {
-                setTranslateText({...translateText, categorie: String(r)})
-            } else {
-                setTranslateText({...translateText, categorie: book.volumeInfo.categories})
-            }
-        })
+        // translatePt(book.volumeInfo.categories).then((r) => {
+        //     if (r !== null || r !== undefined) {
+        //         setTranslateText({...translateText, categorie: String(r)})
+        //     } else {
+        //         setTranslateText({...translateText, categorie: book.volumeInfo.categories})
+        //     }
+        // })
 
         return (
 
@@ -172,7 +172,7 @@ const BookDetail = ({ route, navigation }) => {
                     textStyle={{ ...FONTS.body5 }}
                     style={{ backgroundColor: COLORS.darkGreen }}
                   >
-                    {translateText.categorie}
+                    {book.volumeInfo.categories}
                   </Chip>
                     </Text>
                 </View>
