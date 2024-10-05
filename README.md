@@ -1,5 +1,10 @@
 A small book app made with React Native
 (Project for React Native studies)
+<br />
+
+Inspired by “ [LCRN EP6 - Book Store App - React Native UI](https://www.youtube.com/watch?v=PEI38Pa8ZYM) ”
+<br />
+However, I've been changing the layouts and adding new components and functions
 
 # Images
 
