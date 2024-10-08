@@ -83,8 +83,7 @@ const GetBook = ({ item, navigation }) => {
           <View style={{ flexDirection: 'row', marginTop: SIZES.base, marginBottom: SIZES.base }}>
 
             {item.volumeInfo.categories == null ? (
-              <View style={{ justifyContent: 'center', alignItems: 'center', padding: SIZES.base, marginRight: SIZES.base, backgroundColor: COLORS.darkGreen, height: 50, borderRadius: SIZES.radius, marginBottom: SIZES.base }}>
-                <Text style={{ ...FONTS.body5, color: COLORS.lightGreen }}>Sem Gênero</Text>
+              <View>
               </View>
             )
               : (

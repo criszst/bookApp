@@ -66,25 +66,16 @@ const BookDetail = ({ route, navigation }) => {
     //     }
     // }
 
-    async function translatePt(text: string) {
-        if (text === undefined || text === null) {
-            throw new Error("o texto aí nao pode estar vazio bb");
-
-        }
-
-        const translateCt = await translate(text, 'por')
-        return translateCt
-    }
 
     function renderBookInfoSection() {
-
-        // translatePt(book.volumeInfo.categories).then((r) => {
-        //     if (r !== null || r !== undefined) {
-        //         setTranslateText({...translateText, categorie: String(r)})
-        //     } else {
-        //         setTranslateText({...translateText, categorie: book.volumeInfo.categories})
-        //     }
-        // })
+        const test = translate(book.volumeInfo.categories, 'por')
+        test.then((r) => {
+            if (r[0] !== null || r[0] !== undefined) {
+                setTranslateText({...translateText, categorie: String(r[0])})
+            } else {
+                setTranslateText({...translateText, categorie: book.volumeInfo.categories})
+            }
+        })
 
         return (
 

@@ -39,7 +39,7 @@ const SearchBook = ({ input, navigation }) => {
       );
       const data = requestBook.data;
 
-      return data.items.slice(0, 7);
+      return data.items.slice(0, 14);
 
 
 
