@@ -3,24 +3,19 @@ import {
     View,
     Text,
     ImageBackground,
-    TouchableOpacity,
     Image,
     ScrollView,
     Animated,
     StyleSheet,
 } from 'react-native';
 
-import { useIsFocused, DarkTheme, } from '@react-navigation/native';
-
 import { Appbar, useTheme, Chip } from 'react-native-paper';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { renderBottomButton } from '../utils/bookDetail/renderButtom'
+import { renderBottomButton } from '../../utils/BookDetail/renderButtom'
 
-import { FONTS, COLORS, SIZES, icons } from "../constants";
-import axios from "axios";
+import { FONTS, COLORS, SIZES, icons } from "../../constants";
 
-import translate from "translate";
+import translatePtBr from "../../utils/Translate/translatePtBr";
 
 const LineDivider = () => {
     return (
@@ -30,28 +25,12 @@ const LineDivider = () => {
     )
 }
 
-translate.engine = "google";
+
 
 const BookDetail = ({ route, navigation }) => {
-    const [book, setBook] = useState(null);
-    const [author, setAuthor] = useState('');
+    // talvez eu use no futuro, mas por enquanto vamo comentar ne 
+    // const [author, setAuthor] = useState('');
 
-    const [translateText, setTranslateText] = React.useState({
-        categorie: 'Nao Encontrado',
-    });
-
-
-    const [scrollViewWholeHeight, setScrollViewWholeHeight] = React.useState(1);
-    const [scrollViewVisibleHeight, setScrollViewVisibleHeight] = React.useState(0);
-
-    const indicator = new Animated.Value(0);
-
-    React.useEffect(() => {
-        let { book } = route.params;
-        setBook(book)
-    }, [book])
-
-    // talvez eu use no futuro, mas por enquanto vamo comentar ne
     // async function authorInfo(query: string) {
     //     try {
     //         const requestData = await axios.get(
@@ -66,19 +45,42 @@ const BookDetail = ({ route, navigation }) => {
     //     }
     // }
 
+    const [book, setBook] = useState(null);
+
+
+    const [translateText, setTranslateText] = React.useState({
+        categorie: 'Nao Encontrado',
+    });
+
+
+    const [scrollViewWholeHeight, setScrollViewWholeHeight] = React.useState(1);
+    const [scrollViewVisibleHeight, setScrollViewVisibleHeight] = React.useState(0);
+
+    const indicator = new Animated.Value(0);
+
+    useEffect(() => {
+        let { book } = route.params;
+        setBook(book)
+    }, [book])
+
+    useEffect(() => {
+    if (book) {
+        translatePtBr(book.volumeInfo.categories).then(result => {
+            if (result && result.length > 0) {
+                setTranslateText({ ...translateText, categorie: String(result) });
+            } else {
+                setTranslateText({ ...translateText, categorie: book.volumeInfo.categories });
+            }
+        });
+    } else {
+        setTranslateText({ ...translateText, categorie: 'Não Encontrado'});
+    }
+}, [book]);
+
+    
 
     function renderBookInfoSection() {
-        const test = translate(book.volumeInfo.categories, 'por')
-        test.then((r) => {
-            if (r[0] !== null || r[0] !== undefined) {
-                setTranslateText({...translateText, categorie: String(r[0])})
-            } else {
-                setTranslateText({...translateText, categorie: book.volumeInfo.categories})
-            }
-        })
-
         return (
-
             <View style={styles.container}>
                 <ImageBackground
                     source={{
@@ -162,7 +164,7 @@ const BookDetail = ({ route, navigation }) => {
                     textStyle={{ ...FONTS.body5 }}
                     style={{ backgroundColor: COLORS.darkGreen }}
                   >
-                    {book.volumeInfo.categories}
+                    {translateText.categorie}
                   </Chip>
                     </Text>
                 </View>

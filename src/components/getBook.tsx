@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import {
   View,
@@ -16,12 +16,33 @@ import {
   Text,
 } from 'react-native-paper';
 
+import translatePtBr from '../utils/Translate/translatePtBr';
+
 import { COLORS, FONTS, SIZES, icons, } from '../constants';
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
 const GetBook = ({ item, navigation }) => {
+  const [translateText, setTranslateText] = useState({
+    categorie: ''
+  })
+
+  useEffect(() => {
+    if (item) {
+        translatePtBr(item.volumeInfo.categories).then(result => {
+            if (result && result.length > 0) {
+                setTranslateText({ ...translateText, categorie: String(result) });
+            } else {
+                setTranslateText({ ...translateText, categorie: item.volumeInfo.categories });
+            }
+        });
+    } else {
+        setTranslateText({ ...translateText, categorie: 'Não Encontrado'});
+    }
+}, [item]);
+
+
   return (
     <View style={{
       flex: 1, marginVertical: SIZES.base, backgroundColor: COLORS.black, marginRight: SIZES.base, marginLeft: 20,
@@ -96,7 +117,7 @@ const GetBook = ({ item, navigation }) => {
                     textStyle={{ ...FONTS.body5 }}
                     style={{ backgroundColor: COLORS.darkGreen }}
                   >
-                    {item.volumeInfo.categories}
+                    {translateText.categorie}
                   </Chip>
                 </View>
 

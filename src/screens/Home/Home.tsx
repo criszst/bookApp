@@ -12,9 +12,9 @@ import {
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-import { renderHead } from '../../utils/home/headSection'
-import { renderButtonSection } from "../../utils/home/btnSection";
-import { renderMyBookSection } from "../../utils/home/myBookSection";
+import { renderHead } from '../../utils/Home/headSection'
+import { renderButtonSection } from "../../utils/Home/btnSection";
+import { renderMyBookSection } from "../../utils/Home/myBookSection";
 
 import { COLORS, FONTS, SIZES, icons, images } from '../../constants';
 

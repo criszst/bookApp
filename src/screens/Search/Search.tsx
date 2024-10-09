@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View,  StyleSheet} from "react-native";
 
-import SearchBook from '../../utils/search/searchBook';
+import SearchBook from '../../utils/Search/searchBook';
 import { COLORS, icons } from "../../constants";
 import { myBooksData } from '../../components/booksData';
 import { Searchbar, MD3Colors, useTheme } from 'react-native-paper';
