@@ -9,14 +9,6 @@ import Search from '../screens/Search/Search'
 
 import Tabs from "../navigation/tabs";
 
-const theme = {
-    ...DefaultTheme,
-    colors: {
-        ...DefaultTheme.colors,
-        border: "transparent"
-    }
-}
-
 const Stack = createNativeStackNavigator();
 
 export function Routes() {

@@ -22,6 +22,7 @@ import { myBooksData } from "../../components/booksData";
 import { categoriesData } from "../../components/categoriesData";
 import GetBook from "../../components/getBook";
 
+import { Appbar, Drawer} from "react-native-paper";
 
 
 
@@ -30,6 +31,8 @@ const Home = ({ navigation }) => {
         name: 'Cristian',
         point: 200
     }
+
+    const [active, setActive] = React.useState('');
 
     
     const [profile, setProfile] = React.useState(profileData);
@@ -54,23 +57,31 @@ const Home = ({ navigation }) => {
 
 
     return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.black }}>
+            <View style={{ flex: 1, backgroundColor: COLORS.black }}>
 
-                <Animated.View style={{ height: headerHeight, backgroundColor: COLORS.primary, opacity: buttonOpacity }}>
-                    {renderHead(profile)}
-                    <Animated.View style={{ opacity: buttonOpacity }}>
-                        {renderButtonSection()}
-                    </Animated.View>
-                </Animated.View>
-    
-                <Animated.ScrollView
-                style={{ marginTop: SIZES.padding }}
-                scrollEventThrottle={16} 
-                onScroll={Animated.event(
-                    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-                    { useNativeDriver: false }
-                )}
-            >
+                <View style={{ backgroundColor: COLORS.black }}>
+                    <Appbar.Header mode="center-aligned" style={{ backgroundColor: COLORS.black}} elevated={true} statusBarHeight={20}>
+                        <Appbar.Content title={'Home'} disabled={true} titleStyle={{ color: '#FFF'}}  />
+                    </Appbar.Header>
+
+                </View>
+
+                <View>
+                    <Text>Metas de Leitura</Text>
+
+                    <Drawer.Section title="Some title">
+      <Drawer.Item
+        label="First Item"
+        active={active === 'first'}
+        onPress={() => setActive('first')}
+      />
+      <Drawer.Item
+        label="Second Item"
+        active={active === 'second'}
+        onPress={() => setActive('second')}
+      />
+    </Drawer.Section>
+                </View>
                 <View>
                     {renderMyBookSection(myBooks, navigation)}
                 </View>
@@ -80,12 +91,9 @@ const Home = ({ navigation }) => {
                     <View style={{ marginTop: SIZES.padding }}>
                         {renderCategoryHeader()}
                     </View>
-                    <View>
-                        {renderCategoryData()}
-                    </View>
+                    
                 </View>
-            </Animated.ScrollView>
-            </SafeAreaView>
+            </View>
     )
 
     function renderCategoryHeader() {
@@ -117,31 +125,6 @@ const Home = ({ navigation }) => {
                     keyExtractor={item => `${item.id}`}
                     horizontal
                 />
-            </View>
-        )
-    }
-
-    function renderCategoryData() {
-        let books = Array.prototype;
-
-        let selectedCategoryBooks = categories.filter(a => a.id == selectedCategory)
-
-        if (selectedCategoryBooks.length > 0) {
-            books = selectedCategoryBooks[0].books
-        }
-
-        const renderItem = ({ item }) => {
-            return <GetBook item={item} navigation={navigation} />;
-        }
-
-        return (
-            <View style={{ flex: 1, marginTop: SIZES.radius }}>
-                {/* <FlatList
-                    data={books}
-                    renderItem={renderItem}
-                    keyExtractor={item => `${item.id}`}
-                    showsVerticalScrollIndicator={false}
-                /> */}
             </View>
         )
     }

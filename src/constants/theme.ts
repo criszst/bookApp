@@ -5,7 +5,7 @@ export const COLORS = {
     primary: "#3c364c",
     secondary: "#1a1d24",
 
-    black: "#171921",
+    black: "#0b0c0f",
     white: "#FFFFFF",
     lightGray: "#64676D",
     lightGray2: "#EFEFF0",
@@ -19,7 +19,7 @@ export const COLORS = {
     lightBlue: "#424BAF",
     darkGreen: "#213432",
     lightGreen: "#31Ad66",
-
+    purple: '#5a48f5'
 };
 
 export const SIZES = {

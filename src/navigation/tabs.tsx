@@ -30,7 +30,7 @@ const Tabs = () => {
                     backgroundColor: COLORS.black
                 },
                 tabBarIcon: ({ focused }) => {
-                    const tintColor = focused ? COLORS.white : COLORS.primary;
+                    const tintColor = focused ? COLORS.purple : COLORS.lightGray4;
 
                     switch (route.name) {
                         case "Home":

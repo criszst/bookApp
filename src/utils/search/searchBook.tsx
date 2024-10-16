@@ -34,6 +34,7 @@ const SearchBook = ({ input, navigation }) => {
           params: {
             q: query,
             key: 'AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo',
+            langRestrict: 'por'
           },
         },
       );

@@ -7,9 +7,13 @@ import {
     ScrollView,
     Animated,
     StyleSheet,
+    TouchableOpacity
 } from 'react-native';
 
-import { Appbar, useTheme, Chip } from 'react-native-paper';
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+
+
+import { Appbar, Avatar, Chip, Drawer, Icon } from 'react-native-paper';
 
 import { renderBottomButton } from '../../utils/BookDetail/renderButtom'
 
@@ -109,17 +113,30 @@ const BookDetail = ({ route, navigation }) => {
                 </View>
 
                 {/* Header */}
-                <View style={{ backgroundColor: COLORS.black }}>
-                    <Appbar.Header mode="center-aligned" style={{ backgroundColor: COLORS.black}} statusBarHeight={20}>
-                        <Appbar.BackAction onPress={() => navigation.goBack()} iconColor='#FFF'  />
-                        <Appbar.Content title={String(book.volumeInfo.title)} disabled={true} titleStyle={{ color: '#FFF'}}  />
-                        <Appbar.Action icon="dots-vertical" iconColor='#FFF'  onPress={() => console.log('a')} />
-                    </Appbar.Header>
+                <View style={{ backgroundColor: COLORS.black, borderColor: COLORS.purple }}>
+
 
                 </View>
 
                 {/* Capa do livro */}
-                <View style={{ flex: 5, paddingTop: SIZES.padding2, alignItems: 'center' }}>
+                <View style={{ flex: 3, paddingTop: SIZES.padding2, alignItems: 'center' }}>
+                <TouchableOpacity
+                style={{
+                    width: 40,
+                    height: 30,
+                    backgroundColor: COLORS.black,
+                    marginLeft: SIZES.padding,
+                    marginVertical: SIZES.base,
+                    borderRadius: SIZES.radius,
+                    alignItems: 'center',
+                    left: 150,
+                }}
+                onPress={() => navigation.goBack()}
+            >
+                <EvilIcons name="close" size={30} color="white" />
+
+            </TouchableOpacity>
+
                     <Image
                         source={{
                             uri:
@@ -137,7 +154,7 @@ const BookDetail = ({ route, navigation }) => {
                 </View>
 
                 {/* Nome do livro e do autor */}
-                <View style={{ flex: 1.8, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', top: -20, }}>
                     <Text style={{ ...FONTS.h3, color: COLORS.lightGray3 }}>{book.volumeInfo.title}</Text>
                     <Text style={{ ...FONTS.body3, color: COLORS.lightGray3 }}>{book.volumeInfo.authors.join(', ')}</Text>
                 </View>
@@ -170,7 +187,7 @@ const BookDetail = ({ route, navigation }) => {
                 </View>
             </View>
 
-                <View style={{ flex: 1, flexDirection: 'row', padding: 15 }}>
+                <View style={{ flex: 1, flexDirection: 'row', padding: 10 }}>
                     {/* ScrollBar */}
                     <View style={{ width: 0, height: "100%", backgroundColor: COLORS.gray1 }}>
                         <Animated.View
@@ -229,7 +246,8 @@ const BookDetail = ({ route, navigation }) => {
                             paddingVertical: 15,
                             margin: 10,
                             borderRadius: SIZES.radius,
-                            backgroundColor: COLORS.black
+                            backgroundColor: '#000001',
+                            borderWidth: 5,
                         }}
                     >
                         {/* Avaliação */}
@@ -256,11 +274,16 @@ const BookDetail = ({ route, navigation }) => {
                     </View>
                     {renderBookDescription()}
                 </View>
+              
+                        
+                
 
                 {/* Botoes */}
                 <View style={{ height: 70, marginBottom: 30 }}>
                     {renderBottomButton(book, navigation)}
                 </View>
+
+              
             </View>
         )
     } else {
@@ -290,22 +313,10 @@ const styles = StyleSheet.create({
         marginHorizontal: SIZES.padding,
 
     },
-    authorImage: {
-        width: 65,
-        height: 65,
-        borderRadius: 65,
-        marginRight: SIZES.padding,
-    },
-    authorDetails: {
-        marginTop: 5,
-        opacity: 0.75,
-        width: 'auto',
-        color: '#FFF'
-    },
 
     aboutBook: {
-        fontSize: 17,
-        lineHeight: 25,
+        fontSize: 15,
+        lineHeight: 30,
         textAlign: 'justify',
         color: COLORS.lightGray4
     },
