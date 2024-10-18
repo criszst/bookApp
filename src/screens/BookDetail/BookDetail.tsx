@@ -271,13 +271,14 @@ const BookDetail = ({ route, navigation }) => {
                             <Text style={{ ...FONTS.h3, color: COLORS.white }}>{book.volumeInfo.language}</Text>
                             <Text style={{ ...FONTS.body4, color: COLORS.white }}>Idioma</Text>
                         </View>
+
                     </View>
+
                     {renderBookDescription()}
+
                 </View>
               
                         
-                
-
                 {/* Botoes */}
                 <View style={{ height: 70, marginBottom: 30 }}>
                     {renderBottomButton(book, navigation)}
