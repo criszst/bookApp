@@ -33,6 +33,7 @@ const renderSlide = ({item}) => {
             alignItems: 'center',
             padding: 15,
             paddingTop: 100,
+            backgroundColor: COLORS.black
           }}>
             <Image
               source={item.image}
@@ -68,6 +69,7 @@ const Library = () => {
       <View style={{
         padding: 12,
         marginBottom: 200,
+        backgroundColor: COLORS.black
       }}>
         <Text style={{
           color: COLORS.black,
@@ -80,8 +82,8 @@ const Library = () => {
     )
   }
     return(
-      <ScrollView>
-        <View>
+      <ScrollView style={{            backgroundColor: COLORS.black}}>
+        <View style={{            backgroundColor: COLORS.black}}>
             {
                 showHomePage ? <AppIntroSlider
                 data={slides}

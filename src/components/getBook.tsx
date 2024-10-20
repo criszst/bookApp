@@ -1,18 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   View,
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 import {
   Chip,
-  List,
-  MD2Colors,
-  MD3Colors,
-  Snackbar,
   Text,
 } from 'react-native-paper';
 

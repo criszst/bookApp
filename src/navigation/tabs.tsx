@@ -9,7 +9,6 @@ import { Home } from "../screens";
 
 import Login from "../screens/Login/Login";
 import Search from '../screens/Search/Search'
-import { BookReader } from '../screens'
 
 
 import { icons, COLORS } from "../constants";
@@ -27,7 +26,8 @@ const Tabs = () => {
                 tabBarShowLabel: false,
                 tabBarStyle: {
                     height: "10%",
-                    backgroundColor: COLORS.black
+                    backgroundColor: COLORS.black,
+                    borderTopColor: COLORS.primary,
                 },
                 tabBarIcon: ({ focused }) => {
                     const tintColor = focused ? COLORS.purple : COLORS.lightGray4;

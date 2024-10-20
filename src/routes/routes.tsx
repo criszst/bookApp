@@ -14,7 +14,7 @@ export function Routes() {
     return(
             <Stack.Navigator
                 screenOptions={{
-                    headerShown: false
+                    headerShown: false,
                 }}
                 initialRouteName={'Home'}
             >
