@@ -16,6 +16,8 @@ import {
   Text,
 } from 'react-native-paper';
 
+import Animated from 'react-native-reanimated';
+
 import translatePtBr from '../utils/Translate/translatePtBr';
 
 import { COLORS, FONTS, SIZES, icons, } from '../constants';
@@ -56,13 +58,14 @@ const GetBook = ({ item, navigation }) => {
         onPress={() => navigation.navigate("BookDetail", { book: item })}
       >
         {/* CAPA DO LIVRO */}
-        <Image
+        <Animated.Image
           source={{
             uri:
               item.volumeInfo.imageLinks?.thumbnail ||
               `http://books.google.com/books/content?id=${item.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`
           }}
           resizeMode="cover"
+          sharedTransitionTag="tag"
           style={{
             width: 110, height: 'auto', borderRadius: SIZES.radius,
           }}

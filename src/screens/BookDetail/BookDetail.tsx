@@ -2,22 +2,20 @@ import React, { useState, useEffect } from "react";
 import {
     View,
     Text,
-    ImageBackground,
-    Image,
     ScrollView,
-    Animated,
     StyleSheet,
-    TouchableOpacity
+    Animated
 } from 'react-native';
 
-import EvilIcons from '@expo/vector-icons/EvilIcons';
+import { useTheme } from '@react-navigation/native';
+import { useCardAnimation } from '@react-navigation/stack';
 
+import { Chip } from 'react-native-paper';
 
-import { Appbar, Avatar, Chip, Drawer, Icon } from 'react-native-paper';
-
+import { renderBookHeader } from "../../utils/BookDetail/bookHeader";
 import { renderBottomButton } from '../../utils/BookDetail/renderButtom'
 
-import { FONTS, COLORS, SIZES, icons } from "../../constants";
+import { FONTS, COLORS, SIZES } from "../../constants";
 
 import translatePtBr from "../../utils/Translate/translatePtBr";
 
@@ -28,8 +26,6 @@ const LineDivider = () => {
         </View>
     )
 }
-
-
 
 const BookDetail = ({ route, navigation }) => {
     // talvez eu use no futuro, mas por enquanto vamo comentar ne 
@@ -81,88 +77,8 @@ const BookDetail = ({ route, navigation }) => {
     }
 }, [book]);
 
+  const { current } = useCardAnimation();
     
-
-    function renderBookInfoSection() {
-        return (
-            <View style={styles.container}>
-                <ImageBackground
-                    source={{
-                        uri:
-                            book.volumeInfo.imageLinks?.thumbnail ||
-                            `http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`
-                    }}
-                    resizeMode='cover'
-                    blurRadius={5}
-                    style={{
-                        ...StyleSheet.absoluteFillObject,
-                        opacity: 0.51,
-                        backgroundColor: 'rgba(0,0,0,.25)',
-                    }}
-                />
-
-                <View
-                    style={{
-                        position: 'absolute',
-                        top: 0,
-                        right: 0,
-                        bottom: 0,
-                        left: 0,
-                    }}
-                >
-                </View>
-
-                {/* Header */}
-                <View style={{ backgroundColor: COLORS.black, borderColor: COLORS.purple }}>
-
-
-                </View>
-
-                {/* Capa do livro */}
-                <View style={{ flex: 3, paddingTop: SIZES.padding2, alignItems: 'center' }}>
-                <TouchableOpacity
-                style={{
-                    width: 40,
-                    height: 30,
-                    backgroundColor: COLORS.black,
-                    marginLeft: SIZES.padding,
-                    marginVertical: SIZES.base,
-                    borderRadius: SIZES.radius,
-                    alignItems: 'center',
-                    left: 150,
-                }}
-                onPress={() => navigation.goBack()}
-            >
-                <EvilIcons name="close" size={30} color="white" />
-
-            </TouchableOpacity>
-
-                    <Image
-                        source={{
-                            uri:
-                                book.volumeInfo.imageLinks?.thumbnail ||
-                                `http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`
-                        }}
-                        resizeMode="contain"
-                        style={{
-                            flex: 1,
-                            width: 150,
-                            height: "auto",
-                            borderRadius: 17,
-                        }}
-                    />
-                </View>
-
-                {/* Nome do livro e do autor */}
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', top: -20, }}>
-                    <Text style={{ ...FONTS.h3, color: COLORS.lightGray3 }}>{book.volumeInfo.title}</Text>
-                    <Text style={{ ...FONTS.body3, color: COLORS.lightGray3 }}>{book.volumeInfo.authors.join(', ')}</Text>
-                </View>
-
-
-            </View>
-        )
-    }
 
     function renderBookDescription() {
 
@@ -233,14 +149,29 @@ const BookDetail = ({ route, navigation }) => {
         return (
             <View style={{ flex: 1, backgroundColor: COLORS.black }}>
                 {/* Book Cover Section */}
-                <View style={{ flex: 3 }}>
-                    {renderBookInfoSection()}
-                </View>
+                <Animated.View 
+                
+                style={{
+                    flex: 3, 
+
+                  transform: [
+                    {
+                      scale: current.progress.interpolate({
+                        inputRange: [0.1, 1],
+                        outputRange: [0.7, 1],
+                        extrapolate: 'clamp',
+                      }),
+                    },
+                  ]
+                }}
+                  >
+                    {renderBookHeader(book, navigation)}
+                </Animated.View >
 
                 {/* Descrição */}
                 <View style={styles.bookInfo}>
                     {/* Info */}
-                    <View
+                    <Animated.View
                         style={{
                             flexDirection: 'row',
                             paddingVertical: 15,
@@ -248,6 +179,15 @@ const BookDetail = ({ route, navigation }) => {
                             borderRadius: SIZES.radius,
                             backgroundColor: '#000001',
                             borderWidth: 5,
+                            transform: [
+                                {
+                                  scale: current.progress.interpolate({
+                                    inputRange: [0.1, 1],
+                                    outputRange: [0.7, 1],
+                                    extrapolate: 'clamp',
+                                  }),
+                                },
+                              ]
                         }}
                     >
                         {/* Avaliação */}
@@ -272,7 +212,7 @@ const BookDetail = ({ route, navigation }) => {
                             <Text style={{ ...FONTS.body4, color: COLORS.white }}>Idioma</Text>
                         </View>
 
-                    </View>
+                    </Animated.View>
 
                     {renderBookDescription()}
 
