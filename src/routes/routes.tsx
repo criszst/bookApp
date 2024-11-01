@@ -30,6 +30,9 @@ export function Routes() {
                 options={{
                     headerShown: false,
                     gestureEnabled: true,
+                    // obs: esse transition serve para as animações entre as páginas, 
+                    // sendo o "ModalSlideFromBottomIOS" o tipo de animação
+                    // ok futuro cristian??
                     ...TransitionPresets.ModalSlideFromBottomIOS,
                 }}
                 

@@ -25,29 +25,21 @@ const SearchBook = ({ input, navigation }) => {
   async function bookGoogle(query: string): Promise<any> {
     // isso era pra ficar em um arquivo separado, mas dps eu arrumo pq bateu mó sono agr
     // const apiKey = 'AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo';
-
-    try {
-
-      const requestBook = await axios.get(
-        'https://www.googleapis.com/books/v1/volumes?',
-        {
-          params: {
-            q: query,
-            key: 'AIzaSyC0M094uHsFpQwr-sIS1bAw0Lg9Kwnidgo',
-            langRestrict: 'por'
-          },
-        },
-      );
-      const data = requestBook.data;
-
-      return data.items.slice(0, 14);
-
-
-
-    } catch (error) {
-      console.error("Erro nessa bosta se vira aí > ", error);
-      return [];
-    }
+      const params = {
+        q: query,
+        langRestrict: 'por',
+      };
+    
+      try {
+        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?${query}` , { params });
+        const { items } = response.data;
+    
+        return items.filter((item) => item.volumeInfo.pageCount > 0).slice(0, 14);
+      } catch (error) {
+        console.error('Erro :', error);
+        return [];
+      }
+    
   }
 
   useEffect(() => {

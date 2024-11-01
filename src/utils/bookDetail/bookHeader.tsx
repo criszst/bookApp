@@ -84,7 +84,7 @@ export function renderBookHeader(book, navigation) {
             {/* Nome do livro e do autor */}
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', top: -20, }}>
                 <Text style={{ ...FONTS.h3, color: COLORS.lightGray3 }}>{book.volumeInfo.title}</Text>
-                <Text style={{ ...FONTS.body3, color: COLORS.lightGray3 }}>{book.volumeInfo.authors.join(', ')}</Text>
+                <Text style={{ ...FONTS.body3, color: COLORS.lightGray3 }}>{book.volumeInfo.authors.join(", ")}</Text>
             </View>
 
 

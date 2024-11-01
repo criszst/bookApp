@@ -7,7 +7,6 @@ import {
     Animated
 } from 'react-native';
 
-import { useTheme } from '@react-navigation/native';
 import { useCardAnimation } from '@react-navigation/stack';
 
 import { Chip } from 'react-native-paper';
